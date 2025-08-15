@@ -9,8 +9,10 @@ from tracking_numbers.helpers.spec import iter_definitions  # noqa:E402
 import_statements = [
     "import re",
     "",
+    "from tracking_numbers.checksum_validator import Luhn",
     "from tracking_numbers.checksum_validator import Mod10",
     "from tracking_numbers.checksum_validator import Mod7",
+    "from tracking_numbers.checksum_validator import Mod_37_36",
     "from tracking_numbers.checksum_validator import S10",
     "from tracking_numbers.checksum_validator import SumProductWithWeightsAndModulo",
     "from tracking_numbers.definition import Additional",

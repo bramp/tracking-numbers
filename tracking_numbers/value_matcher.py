@@ -33,6 +33,9 @@ class ExactValueMatcher(ValueMatcher):
     def __repr__(self):
         return repr_with_args(self, value=self.value)
 
+    def __str__(self) -> str:
+        return self.value
+
     def matches(self, other: str) -> bool:
         return self.value == other
 
@@ -43,6 +46,9 @@ class RegexValueMatcher(ValueMatcher):
 
     def __repr__(self):
         return repr_with_args(self, pattern=self.pattern)
+
+    def __str__(self) -> str:
+        return self.pattern.pattern
 
     def matches(self, other: str) -> bool:
         return bool(self.pattern.match(other))

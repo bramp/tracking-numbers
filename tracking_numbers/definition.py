@@ -232,7 +232,7 @@ class TrackingNumberDefinition:
 
         passes_checksum = self.checksum_validator.passes(
             serial_number=serial_number,
-            check_digit=int(check_digit),
+            check_digit=check_digit,
         )
 
         if not passes_checksum:

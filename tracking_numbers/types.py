@@ -8,7 +8,7 @@ from typing import Tuple
 
 Info = Dict[str, Any]
 Spec = Dict[str, Any]
-SerialNumber = List[int]
+SerialNumber = List[str]
 ValidationError = Tuple[str, str]
 
 

@@ -25,7 +25,7 @@ def pytest_generate_tests(metafunc):
     )
 
 
-def test_tracking_numbers(definition, number, expected_valid):
+def test_tracking_numbers(definition: TrackingNumberDefinition, number: str, expected_valid: bool):
     tracking_number = definition.test(number)
     if not tracking_number:
         assert not expected_valid, "Expected valid tracking number, but wasn't detected"

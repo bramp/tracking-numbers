@@ -43,7 +43,7 @@ class DefaultSerialNumberParser(SerialNumberParser):
         if self.prepend_if:
             number = self.prepend_if.apply(number)
 
-        return [int(digit) for digit in number]
+        return list(number)
 
     @classmethod
     def from_spec(cls, validation_spec: Spec) -> "SerialNumberParser":
@@ -71,9 +71,9 @@ class UPSSerialNumberParser(SerialNumberParser):
         return [self._value_of(ch) for ch in number]
 
     @staticmethod
-    def _value_of(ch: str) -> int:
+    def _value_of(ch: str) -> str:
         # Can't find a definitive spec for _why_ the chars are mapped this way,
         # but I did manage to find the following articles that help to confirm
         # https://abelable.altervista.org/check-digit-function-for-an-ups-tracking-number/
         # https://www.codeproject.com/articles/21224/calculating-the-ups-tracking-number-check-digit
-        return int(ch) if ch.isdigit() else (ord(ch) - 3) % 10
+        return ch if ch.isdigit() else str((ord(ch) - 3) % 10)
