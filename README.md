@@ -8,6 +8,7 @@
   - [Usage](#usage)
     - [`get_tracking_number(number)`](#get_tracking_numbernumber)
     - [`get_definition(product_name)`](#get_definitionproduct_name)
+  - [Updating the definitions](#updating-the-definitions)
   - [Testing](#testing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -82,6 +83,26 @@ tracking_number = ups_definition.test("1ZY0X1930320121606")
 tracking_number = ups_definition.test('some_valid_fedex_number')
 
 # => None
+```
+
+## Updating the definitions
+
+The source [`tracking_number_data`](https://github.com/jkeen/tracking_number_data/) is
+occasionally updated. To re-generate this library please run the following:
+
+```sh
+# Fetch the latest tracking_number_data
+git submodule init
+git submodule update --remote --merge
+
+# Regenerate the tracking number definitions
+python codegen.py
+
+# Format and Lint the code
+pre-commit run --all-files
+
+# Finally test
+pytest
 ```
 
 ## Testing
