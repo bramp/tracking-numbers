@@ -1,0 +1,39 @@
+{
+  "id": "s10",
+  "name": "S10",
+  "validation": {
+    "checksum": {
+      "name": "s10"
+    },
+    "additional": {
+      "exists": ["Courier"]
+    }
+  },
+  "regex": "\\s*(?<ServiceType>([A-Z]\\s*){2})(?<SerialNumber>([0-9]\\s*){8})(?<CheckDigit>([0-9]\\s*))(?<CountryCode>([A-Z]\\s*){2})",
+  "additional": [
+    {
+      "name": "Service Type",
+      "regex_group_name": "ServiceType",
+      "lookup": [
+        {
+          "name": "Letter Post Registered",
+          "matches_regex": "R[A-Z]",
+          "description": "Prepaid first-class mail."
+        }
+      ]
+    },
+    {
+      "name": "Courier",
+      "regex_group_name": "CountryCode",
+      "lookup": [
+        {
+          "country": "Great Britain",
+          "matches": "GB",
+          "courier": "Royal Mail Group plc",
+          "courier_url": "http://www.royalmail.com/postcode-finder?gear=postcode&campaignid=postcodefinder_redirect",
+          "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/great-britain.html"
+        }
+      ]
+    }
+  ]
+}

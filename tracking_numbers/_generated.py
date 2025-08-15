@@ -5,7 +5,8 @@ from tracking_numbers.checksum_validator import Mod10
 from tracking_numbers.checksum_validator import Mod7
 from tracking_numbers.checksum_validator import S10
 from tracking_numbers.checksum_validator import SumProductWithWeightsAndModulo
-from tracking_numbers.definition import AdditionalValidation
+from tracking_numbers.definition import Additional
+from tracking_numbers.definition import AdditionalValidator
 from tracking_numbers.definition import TrackingNumberDefinition
 from tracking_numbers.serial_number import DefaultSerialNumberParser
 from tracking_numbers.serial_number import PrependIf
