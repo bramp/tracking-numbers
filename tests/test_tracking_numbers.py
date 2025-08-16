@@ -25,11 +25,19 @@ def pytest_generate_tests(metafunc):
     )
 
 
-def test_tracking_numbers(definition: TrackingNumberDefinition, number: str, expected_valid: bool):
+def test_tracking_numbers(
+    definition: TrackingNumberDefinition,
+    number: str,
+    expected_valid: bool,
+):
     tracking_number = definition.test(number)
     if not tracking_number:
         assert not expected_valid, "Expected valid tracking number, but wasn't detected"
     elif not tracking_number.valid:
-        assert not expected_valid, "Expected valid tracking number, but was invalid"
+        assert (
+            not expected_valid
+        ), "Expected valid tracking number, but was invalid. Reasons: {}".format(
+            tracking_number.validation_errors,
+        )
     elif tracking_number.valid:
         assert expected_valid, "Expected invalid tracking number, but was valid"
