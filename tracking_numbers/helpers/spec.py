@@ -1,6 +1,7 @@
 import json
 import os.path
 from os import listdir
+from typing import Iterator
 from typing import List
 from typing import Tuple
 
@@ -13,14 +14,16 @@ DEFAULT_BASE_DIR = "tracking_number_data/couriers"
 TestCase = Tuple[TrackingNumberDefinition, str, bool]
 
 
-def iter_courier_specs(base_dir: str = DEFAULT_BASE_DIR):
+def iter_courier_specs(base_dir: str = DEFAULT_BASE_DIR) -> Iterator[Spec]:
     for filename in listdir(base_dir):
         path = os.path.join(base_dir, filename)
         with open(path) as f:
             yield json.load(f)
 
 
-def iter_definitions(courier_spec: Spec):
+def iter_definitions(
+    courier_spec: Spec,
+) -> Iterator[Tuple[TrackingNumberDefinition, Spec]]:
     courier = Courier(
         name=courier_spec["name"],
         code=courier_spec["courier_code"],
