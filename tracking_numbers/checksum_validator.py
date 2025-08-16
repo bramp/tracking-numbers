@@ -14,8 +14,20 @@ class ChecksumValidator(metaclass=ABCMeta):
         return repr_with_args(self)
 
     @abstractmethod
-    def passes(self, serial_number: SerialNumber, check_digit: str) -> bool:
+    def _check_digit(self, serial_number: SerialNumber) -> int | str:
+        """Calculate the check digit for the given serial number. Most
+        algorithms return a numeric check digit, but some may return a
+        string representation (most notably Mod_37_36).
+        """
         raise NotImplementedError
+
+    def passes(self, serial_number: SerialNumber, check_digit: str) -> bool:
+        """Check if the serial number passes the checksum validation."""
+        # Default implementation that handles non-numeric check digits.
+        try:
+            return self._check_digit(serial_number) == int(check_digit)
+        except (ValueError, TypeError):
+            return False
 
     @classmethod
     def from_spec(cls, validation_spec: Spec) -> Optional["ChecksumValidator"]:
@@ -55,20 +67,19 @@ class ChecksumValidator(metaclass=ABCMeta):
 class S10(ChecksumValidator):
     WEIGHTS = [8, 6, 4, 2, 3, 5, 9, 7]
 
-    def passes(self, serial_number: SerialNumber, check_digit: str) -> bool:
+    def _check_digit(self, serial_number: SerialNumber) -> int:
         total = 0
         for digit, weight in zip(serial_number, self.WEIGHTS):
             total += int(digit) * weight
 
         remainder = total % 11
         if remainder == 1:
-            check = 0
-        elif remainder == 0:
-            check = 5
-        else:
-            check = 11 - remainder
+            return 0
 
-        return check == int(check_digit)
+        if remainder == 0:
+            return 5
+
+        return 11 - remainder
 
 
 class Mod10(ChecksumValidator):
@@ -87,7 +98,7 @@ class Mod10(ChecksumValidator):
             evens_multiplier=self.evens_multiplier,
         )
 
-    def passes(self, serial_number: SerialNumber, check_digit: str) -> bool:
+    def _check_digit(self, serial_number: SerialNumber) -> int:
         total = 0
         for index, digit in enumerate(serial_number):
             is_even_index = index % 2 == 0
@@ -104,45 +115,48 @@ class Mod10(ChecksumValidator):
         if check != 0:
             check = 10 - check
 
-        return check == int(check_digit)
+        return check
 
 
 class Mod7(ChecksumValidator):
-    def passes(self, serial_number: SerialNumber, check_digit: str) -> bool:
-        return int(check_digit) == (to_int(serial_number) % 7)
+    def _check_digit(self, serial_number: SerialNumber) -> int:
+        return to_int(serial_number) % 7
 
 
 class Mod_37_36(ChecksumValidator):
+    MOD = 36
     WEIGHTS = {chr(i): i + 10 for i in range(26)}  # A=10, B=11, ..., Z=35
 
-    def passes(self, serial_number: SerialNumber, check_digit: str) -> bool:
+    def _check_digit(self, serial_number: SerialNumber) -> str:
         # From https://esolutions.dpd.com/dokumente/DPD_Parcel_Label_Specification_2.4.1_EN.pdf
-        mod = 36
-        cd = mod
+        cd = self.MOD
         for char in serial_number:
             if char.isalpha():
-                val = self.WEIGHTS[char.upper()]
+                val = ord(char.upper()) - ord("A") + 10  # A=10, B=11, ..., Z=35
             else:
                 val = int(char)
             cd = val + cd
-            if cd > mod:
-                cd = cd - mod
+            if cd > self.MOD:
+                cd = cd - self.MOD
             cd = cd * 2
-            if cd > mod:
-                cd = cd - (mod + 1)
-        cd = (mod + 1) - cd
-        if cd == mod:
+            if cd > self.MOD:
+                cd = cd - (self.MOD + 1)
+        cd = (self.MOD + 1) - cd
+        if cd == self.MOD:
             cd = 0
-        if cd >= 10:
-            # Find the letter corresponding to the value
-            computed = next((a for a, val in self.WEIGHTS.items() if val == cd), None)
-            if computed is not None:
-                computed = computed
-            else:
-                computed = str(cd)
-        else:
-            computed = str(cd)
-        return str(computed) == check_digit
+
+        if cd < 0 or cd >= self.MOD:
+            raise ValueError(
+                f"Invalid calculated check digit: {cd} expected range [0-35]",
+            )
+
+        if cd < 10:
+            return str(cd)
+
+        return chr(cd - 10 + ord("A"))  # 10=A, 11=B, ..., 35=Z
+
+    def passes(self, serial_number: SerialNumber, check_digit: str) -> bool:
+        return self._check_digit(serial_number) == check_digit
 
 
 class SumProductWithWeightsAndModulo(ChecksumValidator):
@@ -159,13 +173,11 @@ class SumProductWithWeightsAndModulo(ChecksumValidator):
             second_modulo=self.second_modulo,
         )
 
-    def passes(self, serial_number: SerialNumber, check_digit: str) -> bool:
+    def _check_digit(self, serial_number: SerialNumber) -> int:
         total = 0
         for digit, weight in zip(serial_number, self.weights):
             total += int(digit) * weight
-
-        check = total % self.first_modulo % self.second_modulo
-        return check == int(check_digit)
+        return total % self.first_modulo % self.second_modulo
 
 
 class Luhn(ChecksumValidator):
@@ -174,7 +186,7 @@ class Luhn(ChecksumValidator):
     See https://en.wikipedia.org/wiki/Luhn_algorithm
     """
 
-    def passes(self, serial_number: SerialNumber, check_digit: str) -> bool:
+    def _check_digit(self, serial_number: SerialNumber) -> int:
         total = 0
         digits = list(serial_number)[::-1]
         for i, c in enumerate(digits):
@@ -187,4 +199,4 @@ class Luhn(ChecksumValidator):
         check = total % 10
         if check != 0:
             check = 10 - check
-        return check == int(check_digit)
+        return check
