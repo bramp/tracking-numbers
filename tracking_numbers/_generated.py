@@ -57,6 +57,18 @@ DEFINITIONS = [
         checksum_validator=None,
     ),
     TrackingNumberDefinition(
+        courier=Courier(code="lasership", name="LaserShip"),
+        product=Product(name="LaserShip 1LSCX (15)"),
+        number_regex=re.compile(
+            "\\s*1\\s*L\\s*S\\s*\\s*C\\s*X\\s*(?P<SerialNumber>([0-9A-Z]\\s*){10})",
+        ),
+        tracking_url_template=None,
+        serial_number_parser=DefaultSerialNumberParser(prepend_if=None),
+        additional=[],
+        additional_validator=None,
+        checksum_validator=None,
+    ),
+    TrackingNumberDefinition(
         courier=Courier(code="dhl", name="DHL"),
         product=Product(name="DHL Express"),
         number_regex=re.compile(
@@ -531,58 +543,58 @@ DEFINITIONS = [
                     (
                         RegexValueMatcher(pattern=re.compile("E[A-Z]")),
                         {
-                            "name": "EMS",
                             "description": "International Express Mail Service",
+                            "name": "EMS",
                         },
                     ),
                     (
                         RegexValueMatcher(pattern=re.compile("L[A-Z]")),
-                        {"name": "Letter Post Express", "description": ""},
+                        {"description": "", "name": "Letter Post Express"},
                     ),
                     (
                         RegexValueMatcher(pattern=re.compile("M[A-Z]")),
                         {
-                            "name": "Letter Post M-bag",
                             "description": "Direct sacks of printed matter sent to a single foreign addressee at a single address",
+                            "name": "Letter Post M-bag",
                         },
                     ),
                     (
                         RegexValueMatcher(pattern=re.compile("Q[A-M]")),
                         {
-                            "name": "Letter Post IBRS",
                             "description": "International Business Reply Service",
+                            "name": "Letter Post IBRS",
                         },
                     ),
                     (
                         RegexValueMatcher(pattern=re.compile("R[A-Z]")),
                         {
-                            "name": "Letter Post Registered",
                             "description": "Prepaid first-class mail that is recorded by the post office before being sent and at each point along its route to safeguard against loss, theft, or damage.",
+                            "name": "Letter Post Registered",
                         },
                     ),
                     (
                         RegexValueMatcher(pattern=re.compile("U[A-Z]")),
-                        {"name": "Letter Post Misc", "description": ""},
+                        {"description": "", "name": "Letter Post Misc"},
                     ),
                     (
                         RegexValueMatcher(pattern=re.compile("V[A-Z]")),
-                        {"name": "Letter Post Insured", "description": ""},
+                        {"description": "", "name": "Letter Post Insured"},
                     ),
                     (
                         RegexValueMatcher(pattern=re.compile("C[A-Z]")),
-                        {"name": "Parcel Post", "description": ""},
+                        {"description": "", "name": "Parcel Post"},
                     ),
                     (
                         RegexValueMatcher(pattern=re.compile("H[A-Z]")),
-                        {"name": "Parcel Post (e-commerce)", "description": ""},
+                        {"description": "", "name": "Parcel Post (e-commerce)"},
                     ),
                     (
                         RegexValueMatcher(
                             pattern=re.compile("([BDNPZ][A-Z]|A[V-Z]|G[AD])"),
                         ),
                         {
-                            "name": "Domestic",
                             "description": "Mail designated for domestic, bilateral, or multilateral use",
+                            "name": "Domestic",
                         },
                     ),
                 ],
@@ -594,1720 +606,1720 @@ DEFINITIONS = [
                     (
                         ExactValueMatcher(value="AF"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/afghanistan.html",
-                            "courier": "Afghan Post",
                             "courier_url": "http://postalcode.afghanpost.gov.af/",
                             "country": "Afghanistan",
+                            "courier": "Afghan Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/afghanistan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="AL"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/albania.html",
-                            "courier": "Posta Shqiptare",
                             "courier_url": "http://www.postashqiptare.al/",
                             "country": "Albania",
+                            "courier": "Posta Shqiptare",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/albania.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="DZ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/algeria.html",
-                            "courier": "Algérie Poste",
                             "courier_url": "http://www.poste.dz/codepostal/",
                             "country": "Algeria",
+                            "courier": "Algérie Poste",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/algeria.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="AO"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/angola.html",
-                            "courier": "Correios de Angola",
                             "courier_url": "http://www.correiosdeangola.co.ao/",
                             "country": "Angola",
+                            "courier": "Correios de Angola",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/angola.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="AG"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/antigua-and-barbuda.html",
-                            "courier": "Antigua Postal Services",
                             "courier_url": None,
                             "country": "Antigua and Barbuda",
+                            "courier": "Antigua Postal Services",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/antigua-and-barbuda.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="AR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/argentina.html",
-                            "courier": "Correo Argentino",
                             "courier_url": "http://www.correoargentino.com.ar/formularios/cpa",
                             "country": "Argentina",
+                            "courier": "Correo Argentino",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/argentina.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="AM"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/armenia.html",
-                            "courier": "Haypost - Armenian Postal Service",
                             "courier_url": "http://www.haypost.am/view-lang-eng-page-25.html",
                             "country": "Armenia",
+                            "courier": "Haypost - Armenian Postal Service",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/armenia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="AU"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/australia.html",
-                            "courier": "Australia Post",
                             "courier_url": "http://www1.auspost.com.au/postcodes/",
                             "country": "Australia",
+                            "courier": "Australia Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/australia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="AT"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/austria.html",
-                            "courier": "Österreichische Post AG",
                             "courier_url": "http://www.post.at/en/index.php",
                             "country": "Austria",
+                            "courier": "Österreichische Post AG",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/austria.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="AZ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/azerbaijan.html",
-                            "courier": "Azarpoçt",
                             "courier_url": "http://www.azerpost.az/?options=content&id=188&language=en",
                             "country": "Azerbaijan",
+                            "courier": "Azarpoçt",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/azerbaijan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BS"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/bahamas.html",
-                            "courier": "Bahamas Postal Service",
                             "courier_url": "http://www.bahamas.gov.bs/postalservice",
                             "country": "Bahamas",
+                            "courier": "Bahamas Postal Service",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/bahamas.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BH"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/bahrain.html",
-                            "courier": "Bahrain Post",
                             "courier_url": "http://www.transportation.gov.bh/en/modules.php?name=Content&pa=showpage&pid=97",
                             "country": "Bahrain",
+                            "courier": "Bahrain Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/bahrain.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BD"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/bangladesh.html",
-                            "courier": "Bangladesh Post Office",
                             "courier_url": "http://www.bangladeshpost.gov.bd/PostCode.asp",
                             "country": "Bangladesh",
+                            "courier": "Bangladesh Post Office",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/bangladesh.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BB"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/barbados.html",
-                            "courier": "Barbados Postal Service",
                             "courier_url": "http://www.bps.gov.bb/",
                             "country": "Barbados",
+                            "courier": "Barbados Postal Service",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/barbados.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BY"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/belarus.html",
-                            "courier": "Belpochta",
                             "courier_url": "http://zip.belpost.by/",
                             "country": "Belarus",
+                            "courier": "Belpochta",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/belarus.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/belgium.html",
-                            "courier": "bpost",
                             "courier_url": "http://www.bpost.be/site/fr/residential/customerservice/search/postal_codes.html",
                             "country": "Belgium",
+                            "courier": "bpost",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/belgium.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BZ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/belize.html",
-                            "courier": "Belize Postal Service",
                             "courier_url": "http://www.belizepostalservice.gov.bz/site/",
                             "country": "Belize",
+                            "courier": "Belize Postal Service",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/belize.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BJ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/benin.html",
-                            "courier": "La Poste du Bénin",
                             "courier_url": "http://www.laposte.bj/index1.php?id_page=1",
                             "country": "Benin",
+                            "courier": "La Poste du Bénin",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/benin.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BT"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/bhutan.html",
-                            "courier": "Bhutan Post",
                             "courier_url": "http://www.bhutanpost.com.bt/postcode/postcode.php",
                             "country": "Bhutan",
+                            "courier": "Bhutan Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/bhutan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BO"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/bolivia.html",
-                            "courier": "ECOBOL – Empresa de Correos de Bolivia",
                             "courier_url": "http://www.correosbolivia.com/",
                             "country": "Bolivia",
+                            "courier": "ECOBOL – Empresa de Correos de Bolivia",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/bolivia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/bosnia-and-herzegovina.html",
-                            "courier": "JP BH POŠTA d.o.o. Sarajevo",
                             "courier_url": "http://www.post.ba/postanski_brojevi_bih.php",
                             "country": "Bosnia and Herzegovina",
+                            "courier": "JP BH POŠTA d.o.o. Sarajevo",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/bosnia-and-herzegovina.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BW"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/botswana.html",
-                            "courier": "BotswanaPost",
                             "courier_url": "http://www.botspost.co.bw/",
                             "country": "Botswana",
+                            "courier": "BotswanaPost",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/botswana.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/brazil.html",
-                            "courier": "CORREIOS",
                             "courier_url": "http://www.buscacep.correios.com.br/servicos/dnec/index.do",
                             "country": "Brazil",
+                            "courier": "CORREIOS",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/brazil.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BN"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/brunei-darussalam.html",
-                            "courier": "Brunei Postal Services",
                             "courier_url": "http://www.post.gov.bn/",
                             "country": "Brunei Darussalam",
+                            "courier": "Brunei Postal Services",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/brunei-darussalam.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BG"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/bulgaria-rep.html",
-                            "courier": "Bulgarian Posts",
                             "courier_url": "http://www.bgpost.bg/?cid=131",
                             "country": "Bulgaria (Rep.)",
+                            "courier": "Bulgarian Posts",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/bulgaria-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BF"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/burkina-faso.html",
-                            "courier": "SONAPOST",
                             "courier_url": "http://www.sonapost.bf/",
                             "country": "Burkina Faso",
+                            "courier": "SONAPOST",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/burkina-faso.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="BI"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/burundi.html",
-                            "courier": "RNP – Régie nationale des postes",
                             "courier_url": "http://www.poste.bi/",
                             "country": "Burundi",
+                            "courier": "RNP – Régie nationale des postes",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/burundi.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="KH"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/cambodia.html",
-                            "courier": "Ministry of Posts and Telecommunications",
                             "courier_url": "http://www.mptc.gov.kh/",
                             "country": "Cambodia",
+                            "courier": "Ministry of Posts and Telecommunications",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/cambodia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CM"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/cameroon.html",
-                            "courier": "CAMPOST – Cameroon Postal Services",
                             "courier_url": "http://campostonline.com/",
                             "country": "Cameroon",
+                            "courier": "CAMPOST – Cameroon Postal Services",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/cameroon.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/canada.html",
-                            "courier": "Canada Post",
                             "courier_url": "http://www.canadapost.ca/cpotools/apps/fpc/personal/findByCity?execution=e1s1",
                             "country": "Canada",
+                            "courier": "Canada Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/canada.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CV"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/cape-verde.html",
-                            "courier": "Correios de Cabo Verde",
                             "courier_url": "http://www.correios.cv/",
                             "country": "Cape Verde",
+                            "courier": "Correios de Cabo Verde",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/cape-verde.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CF"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/central-african-rep.html",
-                            "courier": "Direction des services postaux de l'Office National des Postes et de l'Épargne",
                             "courier_url": None,
                             "country": "Central African Rep.",
+                            "courier": "Direction des services postaux de l'Office National des Postes et de l'Épargne",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/central-african-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TD"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/chad.html",
-                            "courier": "Société tchadienne des postes et de l'épargne",
                             "courier_url": None,
                             "country": "Chad",
+                            "courier": "Société tchadienne des postes et de l'épargne",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/chad.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CL"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/chile.html",
-                            "courier": "Correos de Chile",
                             "courier_url": "http://www.correos.cl/SitePages/home.aspx",
                             "country": "Chile",
+                            "courier": "Correos de Chile",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/chile.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CN"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/china-peoples-rep.html",
-                            "courier": "China Post",
                             "courier_url": "http://www.cpdc.com.cn/web/index.php?m=postsearch&c=index&a=init&t=addr",
                             "country": "China (People's Rep.)",
+                            "courier": "China Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/china-peoples-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="HK"),
                         {
-                            "upu_reference_url": "",
-                            "courier": "Hong Kong Post",
                             "courier_url": "http://www.hongkongpost.hk",
                             "country": "China",
+                            "courier": "Hong Kong Post",
+                            "upu_reference_url": "",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CO"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/colombia.html",
-                            "courier": "4-72 La Red Postal de Colombia",
                             "courier_url": "http://visor.codigopostal.gov.co/472/visor/",
                             "country": "Colombia",
+                            "courier": "4-72 La Red Postal de Colombia",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/colombia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="KM"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/comoros.html",
-                            "courier": "Societé Nationale des Postes et des Services Financiers",
                             "courier_url": "http://www.lapostecomores.com/bureaux.php",
                             "country": "Comoros",
+                            "courier": "Societé Nationale des Postes et des Services Financiers",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/comoros.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CG"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/congo-rep.html",
-                            "courier": "Congolese Posts and Savings Company",
                             "courier_url": None,
                             "country": "Congo (Rep.)",
+                            "courier": "Congolese Posts and Savings Company",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/congo-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/costa-rica.html",
-                            "courier": "Correos de Costa Rica",
                             "courier_url": "https://www.correos.go.cr/nosotros/codigopostal/busqueda.html",
                             "country": "Costa Rica",
+                            "courier": "Correos de Costa Rica",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/costa-rica.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="HR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/croatia.html",
-                            "courier": "Hrvatska Posta - Croatian Post",
                             "courier_url": "http://www.posta.hr/default.aspx?pretpum&id=3417",
                             "country": "Croatia",
+                            "courier": "Hrvatska Posta - Croatian Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/croatia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CU"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/cuba.html",
-                            "courier": "Ministerio de la Informática y las comunicaciones de Cuba",
                             "courier_url": "http://www.mic.gov.cu/",
                             "country": "Cuba",
+                            "courier": "Ministerio de la Informática y las comunicaciones de Cuba",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/cuba.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CY"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/cyprus.html",
-                            "courier": "Cyprus Post",
                             "courier_url": "http://www.mcw.gov.cy/mcw/dps/dps.nsf/index_en/index_en?OpenDocument",
                             "country": "Cyprus",
+                            "courier": "Cyprus Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/cyprus.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CZ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/czech-rep.html",
-                            "courier": "Česká Pošta",
                             "courier_url": "http://psc.cpost.cz/CleanForm.action?request_locale=en",
                             "country": "Czech Rep.",
+                            "courier": "Česká Pošta",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/czech-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CI"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/cote-divoire-rep.html",
-                            "courier": "La Poste de Côte d’Ivoire",
                             "courier_url": "http://www.laposte.ci/bureau.php",
                             "country": "Côte d'Ivoire (Rep.)",
+                            "courier": "La Poste de Côte d’Ivoire",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/cote-divoire-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="KP"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/dem-peoples-rep-of-korea.html",
-                            "courier": "Korea Post and Telecommunications Corporation",
                             "courier_url": None,
                             "country": "Dem People's Rep. of Korea",
+                            "courier": "Korea Post and Telecommunications Corporation",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/dem-peoples-rep-of-korea.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CD"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/democratic-republic-of-the-congo.html",
-                            "courier": "Congolese Posts and Telecommunications Corporation",
                             "courier_url": None,
                             "country": "Democratic Republic of the Congo",
+                            "courier": "Congolese Posts and Telecommunications Corporation",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/democratic-republic-of-the-congo.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="DK"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/denmark.html",
-                            "courier": "Post Danmark",
                             "courier_url": "http://www.postdanmark.dk/en/find_postcode/Pages/home.aspx",
                             "country": "Denmark",
+                            "courier": "Post Danmark",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/denmark.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="DJ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/djibouti.html",
-                            "courier": "La Poste de Djibouti",
                             "courier_url": None,
                             "country": "Djibouti",
+                            "courier": "La Poste de Djibouti",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/djibouti.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="DM"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/dominica.html",
-                            "courier": "General Post Office",
                             "courier_url": "http://publicworks.gov.dm/index.php/divisions/general-post-office/20-gpo-about-us",
                             "country": "Dominica",
+                            "courier": "General Post Office",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/dominica.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="DO"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/dominican-republic.html",
-                            "courier": "INPOSDOM – Instituto Postal Dominicano",
                             "courier_url": "http://www.inposdom.gob.do/servicios/codigo-postal",
                             "country": "Dominican Republic",
+                            "courier": "INPOSDOM – Instituto Postal Dominicano",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/dominican-republic.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="EC"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/ecuador.html",
-                            "courier": "Correos del Ecuador",
                             "courier_url": "http://www.codigopostal.gob.ec/#",
                             "country": "Ecuador",
+                            "courier": "Correos del Ecuador",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/ecuador.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="EG"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/egypt.html",
-                            "courier": "Egypt Post",
                             "courier_url": "http://www.egyptpost.org/",
                             "country": "Egypt",
+                            "courier": "Egypt Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/egypt.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SV"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/el-salvador.html",
-                            "courier": "Correos de El Salvador",
                             "courier_url": "http://www.correos.gob.sv/",
                             "country": "El Salvador",
+                            "courier": "Correos de El Salvador",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/el-salvador.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GQ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/equatorial-guinea.html",
-                            "courier": "Equatorial Guinea Post",
                             "courier_url": None,
                             "country": "Equatorial Guinea",
+                            "courier": "Equatorial Guinea Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/equatorial-guinea.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="ER"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/eritrea.html",
-                            "courier": "Eritrean Postal Service",
                             "courier_url": "http://www.eriposta.com/",
                             "country": "Eritrea",
+                            "courier": "Eritrean Postal Service",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/eritrea.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="EE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/estonia.html",
-                            "courier": "Eesti Post",
                             "courier_url": "http://www.post.ee/",
                             "country": "Estonia",
+                            "courier": "Eesti Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/estonia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="ET"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/ethiopia.html",
-                            "courier": "Ethiopian postal service",
                             "courier_url": "http://www.ethiopostal.com/",
                             "country": "Ethiopia",
+                            "courier": "Ethiopian postal service",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/ethiopia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="FJ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/fiji.html",
-                            "courier": "Post Fiji",
                             "courier_url": "http://www.postfiji.com.fj/",
                             "country": "Fiji",
+                            "courier": "Post Fiji",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/fiji.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="FI"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/finland-including-the-aaland-islands.html",
-                            "courier": "Posti Ltd",
                             "courier_url": "http://www.verkkoposti.com/e3/english/postalcodecatalog",
                             "country": "Finland (including the Åland Islands)",
+                            "courier": "Posti Ltd",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/finland-including-the-aaland-islands.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="FR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/france.html",
-                            "courier": "La Poste",
                             "courier_url": "http://www.laposte.fr/Entreprise/Outils-Indispensables/Outils/Trouvez-un-code-postal",
                             "country": "France",
+                            "courier": "La Poste",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/france.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/gabon.html",
-                            "courier": "La Poste SA",
                             "courier_url": "http://www.laposte.ga/",
                             "country": "Gabon",
+                            "courier": "La Poste SA",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/gabon.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GM"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/gambia.html",
-                            "courier": "Gambia Postal services Corporation",
                             "courier_url": "http://www.gampost.gm/",
                             "country": "Gambia",
+                            "courier": "Gambia Postal services Corporation",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/gambia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/georgia.html",
-                            "courier": "Georgian Post",
                             "courier_url": "http://www.georgianpost.ge/?site-lang=en&site-path=help/zipcodes/&letter=A",
                             "country": "Georgia",
+                            "courier": "Georgian Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/georgia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="DE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/germany.html",
-                            "courier": "Deutsche Post",
                             "courier_url": "http://www.postdirekt.de/plzserver/PlzSearchServlet?lang=en_GB&id=viewstreet",
                             "country": "Germany",
+                            "courier": "Deutsche Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/germany.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GH"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/ghana.html",
-                            "courier": "Ghana Post",
                             "courier_url": "http://www.ghanapostgh.com/",
                             "country": "Ghana",
+                            "courier": "Ghana Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/ghana.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GB"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/great-britain.html",
-                            "courier": "Royal Mail Group plc",
                             "courier_url": "http://www.royalmail.com/postcode-finder?gear=postcode&campaignid=postcodefinder_redirect",
                             "country": "Great Britain",
+                            "courier": "Royal Mail Group plc",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/great-britain.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/greece.html",
-                            "courier": "Hellenic Post ELTA",
                             "courier_url": "http://www.elta.gr/en-us/findapostcode.aspx",
                             "country": "Greece",
+                            "courier": "Hellenic Post ELTA",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/greece.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GD"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/grenada.html",
-                            "courier": "Grenada Postal Corporation",
                             "courier_url": "http://www.grenadapostal.com/index.html",
                             "country": "Grenada",
+                            "courier": "Grenada Postal Corporation",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/grenada.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GT"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/guatemala.html",
-                            "courier": "El Correo",
                             "courier_url": "http://www.elcorreo.com.gt/cdgcorreo/index.php?option=com_content&view=article&id=104&Itemid=233",
                             "country": "Guatemala",
+                            "courier": "El Correo",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/guatemala.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GN"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/guinea.html",
-                            "courier": "Office de la poste guinéenne",
                             "courier_url": None,
                             "country": "Guinea",
+                            "courier": "Office de la poste guinéenne",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/guinea.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GW"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/guinea-bissau.html",
-                            "courier": "Correios da Guiné-Bissau",
                             "courier_url": None,
                             "country": "Guinea-Bissau",
+                            "courier": "Correios da Guiné-Bissau",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/guinea-bissau.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="GY"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/guyana.html",
-                            "courier": "Guyana Post Office Corporation",
                             "courier_url": "http://guypost.gy/gpoc/",
                             "country": "Guyana",
+                            "courier": "Guyana Post Office Corporation",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/guyana.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="HT"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/haiti.html",
-                            "courier": "Office des Postes d’Haiti",
                             "courier_url": "http://postehaiti.gouv.ht/notre-reseau-postal",
                             "country": "Haiti",
+                            "courier": "Office des Postes d’Haiti",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/haiti.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="HN"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/honduras-rep.html",
-                            "courier": "Honducor",
                             "courier_url": "http://honducor.gob.hn/codpost/consulta.php",
                             "country": "Honduras (Rep.)",
+                            "courier": "Honducor",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/honduras-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="HU"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/hungary.html",
-                            "courier": "Magyar Posta",
                             "courier_url": "http://www.posta.hu/ugyfelszolgalat/iranyitoszam_kereso",
                             "country": "Hungary",
+                            "courier": "Magyar Posta",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/hungary.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="IS"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/iceland.html",
-                            "courier": "Íslandspóstur hf",
                             "courier_url": "http://www.postur.is/en/desktopdefault.aspx/tabid-450/700_read-1715/",
                             "country": "Iceland",
+                            "courier": "Íslandspóstur hf",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/iceland.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="IN"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/india.html",
-                            "courier": "India Post",
                             "courier_url": "http://www.indiapost.gov.in/",
                             "country": "India",
+                            "courier": "India Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/india.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="ID"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/indonesia.html",
-                            "courier": "Pos Indonesia",
                             "courier_url": "http://kodepos.indonesiaweb.info/en/street/",
                             "country": "Indonesia",
+                            "courier": "Pos Indonesia",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/indonesia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="IR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/iran-islamic-rep.html",
-                            "courier": "Islamic Republic of Iran Post Co.",
                             "courier_url": "http://www.post.ir/Homepage.aspx?site=PostPortal&lang=fa-IR&tabid=0",
                             "country": "Iran (Islamic Rep.)",
+                            "courier": "Islamic Republic of Iran Post Co.",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/iran-islamic-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="IQ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/iraq.html",
-                            "courier": "Iraqi Post",
                             "courier_url": "http://www.iraqipost.net/",
                             "country": "Iraq",
+                            "courier": "Iraqi Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/iraq.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="IE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/ireland.html",
-                            "courier": "AN Post - regulatory and International affairs Unit",
                             "courier_url": "http://locator.anpost.ie/",
                             "country": "Ireland",
+                            "courier": "AN Post - regulatory and International affairs Unit",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/ireland.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="IL"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/israel.html",
-                            "courier": "Israel Post",
                             "courier_url": "http://www.israelpost.co.il/zipcode.nsf/demozip?openform",
                             "country": "Israel",
+                            "courier": "Israel Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/israel.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="IT"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/italy.html",
-                            "courier": "Poste Italiane",
                             "courier_url": "http://www.poste.it/online/cercacap/",
                             "country": "Italy",
+                            "courier": "Poste Italiane",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/italy.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="JM"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/jamaica.html",
-                            "courier": "Jamaica Post",
                             "courier_url": "http://www.jamaicapost.gov.jm/",
                             "country": "Jamaica",
+                            "courier": "Jamaica Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/jamaica.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="JP"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/japan.html",
-                            "courier": "Japan Post",
                             "courier_url": "http://www.post.japanpost.jp/zipcode/index.html",
                             "country": "Japan",
+                            "courier": "Japan Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/japan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="JO"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/jordan.html",
-                            "courier": "Jordan Post",
                             "courier_url": "http://www.jordanpost.com.jo/",
                             "country": "Jordan",
+                            "courier": "Jordan Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/jordan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="KZ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/kazakhstan.html",
-                            "courier": "Kazpost",
                             "courier_url": "http://www.kazpost.kz/ru/poisk-pochtovogo-indeksa-0",
                             "country": "Kazakhstan",
+                            "courier": "Kazpost",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/kazakhstan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="KE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/kenya.html",
-                            "courier": "Posta Kenya",
                             "courier_url": "http://www.posta.co.ke/postOfficeFind.asp",
                             "country": "Kenya",
+                            "courier": "Posta Kenya",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/kenya.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="KI"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/kiribati.html",
-                            "courier": "Kiribati Public Service Public",
                             "courier_url": None,
                             "country": "Kiribati",
+                            "courier": "Kiribati Public Service Public",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/kiribati.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="KR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/korea-rep.html",
-                            "courier": "Korea Post",
                             "courier_url": "http://www.epost.go.kr/roadAreaCdEng.retrieveRdEngAreaCdList.comm",
                             "country": "Korea (Rep.)",
+                            "courier": "Korea Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/korea-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="KW"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/kuwait.html",
-                            "courier": "Kuwait Ministry of Communications",
                             "courier_url": "http://moc.kw/English/index.html",
                             "country": "Kuwait",
+                            "courier": "Kuwait Ministry of Communications",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/kuwait.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="KG"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/kyrgyzstan.html",
-                            "courier": "Kyrgyz Post",
                             "courier_url": "http://kyrgyzpost.kg/ru/news.html",
                             "country": "Kyrgyzstan",
+                            "courier": "Kyrgyz Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/kyrgyzstan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="LA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/lao-peoples-dem-rep.html",
-                            "courier": "Entreprise des Postes Lao",
                             "courier_url": None,
                             "country": "Laos",
+                            "courier": "Entreprise des Postes Lao",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/lao-peoples-dem-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="LV"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/latvia.html",
-                            "courier": "Latvia Post",
                             "courier_url": "http://www.pasts.lv/lv/uzzinas/parbaudit-adresi/",
                             "country": "Latvia",
+                            "courier": "Latvia Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/latvia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="LB"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/lebanon.html",
-                            "courier": "LibanPost",
                             "courier_url": "http://www.libanpost.com.lb/",
                             "country": "Lebanon",
+                            "courier": "LibanPost",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/lebanon.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="LS"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/lesotho.html",
-                            "courier": "Lesotho Post",
                             "courier_url": "http://lesothopost.org.ls/",
                             "country": "Lesotho",
+                            "courier": "Lesotho Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/lesotho.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="LR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/liberia.html",
-                            "courier": "Ministry of Posts and Telecommunications",
                             "courier_url": "http://www.mopt.gov.lr/",
                             "country": "Liberia",
+                            "courier": "Ministry of Posts and Telecommunications",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/liberia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="LY"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/libya.html",
-                            "courier": "Libya Post",
                             "courier_url": "http://libyapost.ly/en/",
                             "country": "Libya",
+                            "courier": "Libya Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/libya.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="LI"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/liechtenstein.html",
-                            "courier": "Liechtensteinische Post AG",
                             "courier_url": "http://www.post.li/",
                             "country": "Liechtenstein",
+                            "courier": "Liechtensteinische Post AG",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/liechtenstein.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="LT"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/lithuania.html",
-                            "courier": "Lietuvos Pastas",
                             "courier_url": "http://www.post.lt/en/help/postal-code-search",
                             "country": "Lithuania",
+                            "courier": "Lietuvos Pastas",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/lithuania.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="LU"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/luxembourg.html",
-                            "courier": "Post",
                             "courier_url": "http://www.post.lu/en/particuliers/courrier/rechercher-un-code-postal",
                             "country": "Luxembourg",
+                            "courier": "Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/luxembourg.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MG"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/madagascar.html",
-                            "courier": "PAOSITRA MALAGASY",
                             "courier_url": "http://www.mtpc.gov.mg/",
                             "country": "Madagascar",
+                            "courier": "PAOSITRA MALAGASY",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/madagascar.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MW"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/malawi.html",
-                            "courier": "Malawi Posts Corporation",
                             "courier_url": "http://www.malawiposts.com/",
                             "country": "Malawi",
+                            "courier": "Malawi Posts Corporation",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/malawi.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MY"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/malaysia.html",
-                            "courier": "Pos Malaysia",
                             "courier_url": "http://www.pos.com.my/pos/homepage.aspx",
                             "country": "Malaysia",
+                            "courier": "Pos Malaysia",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/malaysia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MV"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/maldives.html",
-                            "courier": "Maldives Post",
                             "courier_url": "http://www.maldivespost.com/index.php?lid=10",
                             "country": "Maldives",
+                            "courier": "Maldives Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/maldives.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="ML"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/mali.html",
-                            "courier": "Office national des postes",
                             "courier_url": "http://www.laposte.ml/",
                             "country": "Mali",
+                            "courier": "Office national des postes",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/mali.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MT"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/malta.html",
-                            "courier": "Malta Post",
                             "courier_url": "http://postcodes.maltapost.com/",
                             "country": "Malta",
+                            "courier": "Malta Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/malta.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/mauritania.html",
-                            "courier": "MAURIPOST – Société Mauritanienne des Postes",
                             "courier_url": "http://www.mauripost.mr/",
                             "country": "Mauritania",
+                            "courier": "MAURIPOST – Société Mauritanienne des Postes",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/mauritania.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MU"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/mauritius.html",
-                            "courier": "Mauritius Post",
                             "courier_url": "http://www.mauritiuspost.mu/",
                             "country": "Mauritius",
+                            "courier": "Mauritius Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/mauritius.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MX"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/mexico.html",
-                            "courier": "Correos de México",
                             "courier_url": "http://www.correosdemexico.gob.mx/ServiciosLinea/Paginas/ccpostales.aspx",
                             "country": "Mexico",
+                            "courier": "Correos de México",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/mexico.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MD"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/moldova.html",
-                            "courier": "Posta Moldovei",
                             "courier_url": "http://www.posta.md/ro/postal_code.html",
                             "country": "Moldova",
+                            "courier": "Posta Moldovei",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/moldova.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MC"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/monaco.html",
-                            "courier": "La Poste Monaco",
                             "courier_url": "http://www.lapostemonaco.mc/",
                             "country": "Monaco",
+                            "courier": "La Poste Monaco",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/monaco.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MN"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/mongolia.html",
-                            "courier": "Mongol Post - Монгол шуудан компани",
                             "courier_url": "http://www.zipcode.mn/",
                             "country": "Mongolia",
+                            "courier": "Mongol Post - Монгол шуудан компани",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/mongolia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="ME"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/montenegro-rep.html",
-                            "courier": "Pošta Crne Gore",
                             "courier_url": "http://www.postacg.me/main.php?idstr=177",
                             "country": "Montenegro (Rep.)",
+                            "courier": "Pošta Crne Gore",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/montenegro-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/morocco.html",
-                            "courier": "Barid Al-Maghrib – Poste Maroc",
                             "courier_url": "http://www.codepostal.ma/search_mot.aspx?keyword=",
                             "country": "Morocco",
+                            "courier": "Barid Al-Maghrib – Poste Maroc",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/morocco.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MZ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/mozambique.html",
-                            "courier": "Correios de Moçambique",
                             "courier_url": "http://www.correios.co.mz/",
                             "country": "Mozambique",
+                            "courier": "Correios de Moçambique",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/mozambique.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MM"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/myanmar.html",
-                            "courier": "Myanmar Post and Telecommunications Department",
                             "courier_url": None,
                             "country": "Myanmar",
+                            "courier": "Myanmar Post and Telecommunications Department",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/myanmar.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="NA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/namibia.html",
-                            "courier": "NAM Post",
                             "courier_url": "https://www.nampost.com.na/",
                             "country": "Namibia",
+                            "courier": "NAM Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/namibia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="NR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/nauru.html",
-                            "courier": "Nauru General Post Office",
                             "courier_url": None,
                             "country": "Nauru",
+                            "courier": "Nauru General Post Office",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/nauru.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="NP"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/nepal.html",
-                            "courier": "Nepal Postal Services",
                             "courier_url": "http://www.gpo.gov.np/postalcode.aspx",
                             "country": "Nepal",
+                            "courier": "Nepal Postal Services",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/nepal.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="NL"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/netherlands.html",
-                            "courier": "PostNL",
                             "courier_url": "http://www.postnl.nl/voorthuis/",
                             "country": "Netherlands",
+                            "courier": "PostNL",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/netherlands.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="NZ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/new-zealand-including-the-ross-dependency.html",
-                            "courier": "New Zealand Post",
                             "courier_url": "http://www.nzpost.co.nz/Cultures/en-NZ/OnlineTools/PostCodeFinder/",
                             "country": "New Zealand (including the Ross Dependency)",
+                            "courier": "New Zealand Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/new-zealand-including-the-ross-dependency.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="NI"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/nicaragua.html",
-                            "courier": "Correos de Nicaragua",
                             "courier_url": "http://www.correos.gob.ni/",
                             "country": "Nicaragua",
+                            "courier": "Correos de Nicaragua",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/nicaragua.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="NE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/niger.html",
-                            "courier": "Niger Poste",
                             "courier_url": "http://www.nigerposte.net/",
                             "country": "Niger",
+                            "courier": "Niger Poste",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/niger.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="NG"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/nigeria.html",
-                            "courier": "Nigerian Postal Service",
                             "courier_url": "http://www.nigeriapostcodes.com/",
                             "country": "Nigeria",
+                            "courier": "Nigerian Postal Service",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/nigeria.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="NO"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/norway.html",
-                            "courier": "Posten",
                             "courier_url": "http://adressesok.posten.no/en/postal_codes/search",
                             "country": "Norway",
+                            "courier": "Posten",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/norway.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="OM"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/oman.html",
-                            "courier": "Oman Post",
                             "courier_url": "http://www.omanpost.om/Portals/2/Skins/skins//tabid/64/Default.aspx",
                             "country": "Oman",
+                            "courier": "Oman Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/oman.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="PK"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/pakistan.html",
-                            "courier": "Pakistan Post",
                             "courier_url": "http://www.pakpost.gov.pk/postcode/postcode.html",
                             "country": "Pakistan",
+                            "courier": "Pakistan Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/pakistan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="PA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/panama-rep.html",
-                            "courier": "Correos de Panamá",
                             "courier_url": "http://www.correospanama.gob.pa/",
                             "country": "Panama (Rep.)",
+                            "courier": "Correos de Panamá",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/panama-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="PG"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/papua-new-guinea.html",
-                            "courier": "Post PNG",
                             "courier_url": "http://www.postpng.com.pg/",
                             "country": "Papua New Guinea",
+                            "courier": "Post PNG",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/papua-new-guinea.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="PY"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/paraguay.html",
-                            "courier": "Correo Paraguayo",
                             "courier_url": "http://www.correoparaguayo.gov.py/",
                             "country": "Paraguay",
+                            "courier": "Correo Paraguayo",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/paraguay.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="PE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/peru.html",
-                            "courier": "SERPOST – Servicios Postales del Perú",
                             "courier_url": "http://www.mtc.gob.pe/portal/CPOSTAL/Listado_codigo_postal.html",
                             "country": "Peru",
+                            "courier": "SERPOST – Servicios Postales del Perú",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/peru.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="PH"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/philippines.html",
-                            "courier": "PHLPOST – Philippine Postal Corporation",
                             "courier_url": "https://www.phlpost.gov.ph/zip-code-search.php",
                             "country": "Philippines",
+                            "courier": "PHLPOST – Philippine Postal Corporation",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/philippines.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="PL"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/poland.html",
-                            "courier": "Poczta Polska",
                             "courier_url": "http://kody.poczta-polska.pl/",
                             "country": "Poland",
+                            "courier": "Poczta Polska",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/poland.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="PT"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/portugal.html",
-                            "courier": "CTT - Correios",
                             "courier_url": "http://www.ctt.pt/feapl_2/app/open/tools.jspx?tool=1",
                             "country": "Portugal",
+                            "courier": "CTT - Correios",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/portugal.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="QA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/qatar.html",
-                            "courier": "Qatar Post",
                             "courier_url": "http://www.qpost.com.qa/",
                             "country": "Qatar",
+                            "courier": "Qatar Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/qatar.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="RO"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/romania.html",
-                            "courier": "Posta Romana",
                             "courier_url": "http://www.posta-romana.ro/postal_codes",
                             "country": "Romania",
+                            "courier": "Posta Romana",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/romania.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="RU"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/russian-federation.html",
-                            "courier": "Russian Post",
                             "courier_url": "http://www.russianpost.ru/rp/servise/ru/home/postuslug/searchops",
                             "country": "Russian Federation",
+                            "courier": "Russian Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/russian-federation.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="RW"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/rwanda.html",
-                            "courier": "National Post Office (Iposita)",
                             "courier_url": "http://i-posita.rw/spip.php?article1",
                             "country": "Rwanda",
+                            "courier": "National Post Office (Iposita)",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/rwanda.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="KN"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/saint-christopher-saint-kitts-and-nevis.html",
-                            "courier": "St. Kitts & Nevis Postal Services",
                             "courier_url": "http://www.post.gov.kn/",
                             "country": "Saint Christopher (Saint Kitts) and Nevis",
+                            "courier": "St. Kitts & Nevis Postal Services",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/saint-christopher-saint-kitts-and-nevis.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="LC"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/saint-lucia.html",
-                            "courier": "Saint Lucia Postal Service",
                             "courier_url": "http://www.stluciapostal.com/",
                             "country": "Saint Lucia",
+                            "courier": "Saint Lucia Postal Service",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/saint-lucia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="VC"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/saint-vincent-and-the-grenadines.html",
-                            "courier": "SVG Postal Corporation",
                             "courier_url": "http://www.svgpost.gov.vc/",
                             "country": "Saint Vincent and the Grenadines",
+                            "courier": "SVG Postal Corporation",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/saint-vincent-and-the-grenadines.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="WS"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/samoa.html",
-                            "courier": "Samoa Post",
                             "courier_url": "http://www.samoapost.ws/",
                             "country": "Samoa",
+                            "courier": "Samoa Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/samoa.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SM"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/san-marino.html",
-                            "courier": "Poste San Marino",
                             "courier_url": "http://www.poste.sm/on-line/home.html",
                             "country": "San Marino",
+                            "courier": "Poste San Marino",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/san-marino.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="ST"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/sao-tome-and-principe.html",
-                            "courier": "Correios de São Tomé e Príncipe",
                             "courier_url": "http://www.inh.st/correios.st.htm",
                             "country": "Sao Tome and Principe",
+                            "courier": "Correios de São Tomé e Príncipe",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/sao-tome-and-principe.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/saudi-arabia.html",
-                            "courier": "Saudi Post",
                             "courier_url": "http://maps.address.gov.sa",
                             "country": "Saudi Arabia",
+                            "courier": "Saudi Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/saudi-arabia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SN"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/senegal.html",
-                            "courier": "La Poste Senegal",
                             "courier_url": "http://www.laposte.sn/laposte/trouver_codepostal.php",
                             "country": "Senegal",
+                            "courier": "La Poste Senegal",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/senegal.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="RS"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/serbia-rep.html",
-                            "courier": 'PTT Communications "Srbija"',
                             "courier_url": "http://www.posta.rs/struktura/eng/aplikacije/pronadji/nadji-pak-rezultat.asp",
                             "country": "Serbia (Rep.)",
+                            "courier": 'PTT Communications "Srbija"',
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/serbia-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SC"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/seychelles.html",
-                            "courier": "Seychelles Postal Service",
                             "courier_url": "http://www.seychellespost.gov.sc/",
                             "country": "Seychelles",
+                            "courier": "Seychelles Postal Service",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/seychelles.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SL"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/sierra-leone.html",
-                            "courier": "Sierra Leone Postal Services",
                             "courier_url": "http://www.salpost.sl/",
                             "country": "Sierra Leone",
+                            "courier": "Sierra Leone Postal Services",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/sierra-leone.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SG"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/singapore.html",
-                            "courier": "SingPost",
                             "courier_url": "http://www.singpost.com.sg/quick_services/index.htm",
                             "country": "Singapore",
+                            "courier": "SingPost",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/singapore.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SK"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/slovakia.html",
-                            "courier": "Slovenská Posta",
                             "courier_url": "http://psc.posta.sk/",
                             "country": "Slovakia",
+                            "courier": "Slovenská Posta",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/slovakia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SI"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/slovenia.html",
-                            "courier": "Posta Slovenije d.o.o.",
                             "courier_url": "http://www.posta.si/postne-stevilke-doma",
                             "country": "Slovenia",
+                            "courier": "Posta Slovenije d.o.o.",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/slovenia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SB"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/solomon-islands.html",
-                            "courier": "Solomon Post",
                             "courier_url": None,
                             "country": "Solomon Islands",
+                            "courier": "Solomon Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/solomon-islands.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SO"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/somalia.html",
-                            "courier": "Somali Post",
                             "courier_url": None,
                             "country": "Somalia",
+                            "courier": "Somali Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/somalia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="ZA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/south-africa.html",
-                            "courier": "South African Post Office",
                             "courier_url": "http://www.postoffice.co.za/ContactUs/postalcode.html",
                             "country": "South Africa",
+                            "courier": "South African Post Office",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/south-africa.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SS"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/south-sudan-rep.html",
-                            "courier": "Minister of Telecommunication and Postal Services",
                             "courier_url": None,
                             "country": "South Sudan (Rep.)",
+                            "courier": "Minister of Telecommunication and Postal Services",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/south-sudan-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="ES"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/spain.html",
-                            "courier": "Correos y Telégrafos",
                             "courier_url": "http://www.correos.es/ss/Satellite/site/pagina-buscador_codigos_postales/sidioma=es_ES",
                             "country": "Spain",
+                            "courier": "Correos y Telégrafos",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/spain.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="LK"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/sri-lanka.html",
-                            "courier": "Sri Lanka Post",
                             "courier_url": "http://www.slpost.gov.lk/",
                             "country": "Sri Lanka",
+                            "courier": "Sri Lanka Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/sri-lanka.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SD"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/sudan.html",
-                            "courier": "Sudapost",
                             "courier_url": "http://sudapost.sd/index.php/en/",
                             "country": "Sudan",
+                            "courier": "Sudapost",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/sudan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/suriname.html",
-                            "courier": "SURPOST",
                             "courier_url": "http://www.surpost.com/surpost2/index.php",
                             "country": "Suriname",
+                            "courier": "SURPOST",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/suriname.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SZ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/swaziland.html",
-                            "courier": "Swaziland Posts & Telecommunications Corporation",
                             "courier_url": "http://www.sptc.co.sz/swazipost/codes.php",
                             "country": "Swaziland",
+                            "courier": "Swaziland Posts & Telecommunications Corporation",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/swaziland.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/sweden.html",
-                            "courier": "Posten Sweden Post",
                             "courier_url": "http://www.posten.se/oldurls/old_postnummersok.jspv",
                             "country": "Sweden",
+                            "courier": "Posten Sweden Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/sweden.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="CH"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/switzerland.html",
-                            "courier": "La Poste Suisse",
                             "courier_url": "http://www.swisspost.ch/post-startseite.htm",
                             "country": "Switzerland",
+                            "courier": "La Poste Suisse",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/switzerland.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="SY"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/syrian-arab-rep.html",
-                            "courier": "Syrian Post",
                             "courier_url": "http://www.syrianpost.gov.sy/",
                             "country": "Syrian Arab Rep.",
+                            "courier": "Syrian Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/syrian-arab-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TJ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/tajikistan.html",
-                            "courier": "Tajikistan’s communications service agency",
                             "courier_url": None,
                             "country": "Tajikistan",
+                            "courier": "Tajikistan’s communications service agency",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/tajikistan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TZ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/tanzania-united-rep.html",
-                            "courier": "Tanzania Posts Corporation",
                             "courier_url": "http://www.posta.co.tz/",
                             "country": "Tanzania (United Rep.)",
+                            "courier": "Tanzania Posts Corporation",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/tanzania-united-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TH"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/thailand.html",
-                            "courier": "Thailand Post",
                             "courier_url": "http://www.thailandpost.com/search.php",
                             "country": "Thailand",
+                            "courier": "Thailand Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/thailand.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="MK"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/the-former-yugoslav-republic-of-macedonia.html",
-                            "courier": "Macedonian Post & Telecommunications",
                             "courier_url": "http://www.posta.mk/pravilno_adresiranje.html",
                             "country": "The former Yugoslav Republic of Macedonia",
+                            "courier": "Macedonian Post & Telecommunications",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/the-former-yugoslav-republic-of-macedonia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TL"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/timor-leste-dem-rep.html",
-                            "courier": "Correios de Timor Leste",
                             "courier_url": None,
                             "country": "Timor-Leste (Dem. Rep.)",
+                            "courier": "Correios de Timor Leste",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/timor-leste-dem-rep.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TG"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/togo.html",
-                            "courier": "La Poste du Togo",
                             "courier_url": "http://www.laposte.tg/",
                             "country": "Togo",
+                            "courier": "La Poste du Togo",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/togo.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TO"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/tonga-including-niuafoou.html",
-                            "courier": "Tonga Post",
                             "courier_url": "http://tongapost.to/",
                             "country": "Tonga (including Niuafo'ou)",
+                            "courier": "Tonga Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/tonga-including-niuafoou.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TT"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/trinidad-and-tobago.html",
-                            "courier": "Trinidad and Tobago Postal Corporation",
                             "courier_url": "http://www.ttpost.net/",
                             "country": "Trinidad and Tobago",
+                            "courier": "Trinidad and Tobago Postal Corporation",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/trinidad-and-tobago.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TN"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/tunisia.html",
-                            "courier": "La Poste Tunisienne",
                             "courier_url": "http://www.poste.tn/codes.php",
                             "country": "Tunisia",
+                            "courier": "La Poste Tunisienne",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/tunisia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TR"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/turkey.html",
-                            "courier": "Turkey Post",
                             "courier_url": "http://postakodu.ptt.gov.tr/",
                             "country": "Turkey",
+                            "courier": "Turkey Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/turkey.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TM"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/turkmenistan.html",
-                            "courier": "Turkmenpost",
                             "courier_url": "http://www.turkmenpost.gov.tm/about_index.php",
                             "country": "Turkmenistan",
+                            "courier": "Turkmenpost",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/turkmenistan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="TV"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/tuvalu.html",
-                            "courier": "Tuvalu Philatelic Bureau",
                             "courier_url": None,
                             "country": "Tuvalu",
+                            "courier": "Tuvalu Philatelic Bureau",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/tuvalu.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="UG"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/uganda.html",
-                            "courier": "Posta Uganda",
                             "courier_url": "http://www.ugapost.co.ug/",
                             "country": "Uganda",
+                            "courier": "Posta Uganda",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/uganda.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="UA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/ukraine.html",
-                            "courier": "Ukrposhta",
                             "courier_url": "http://services.ukrposhta.com/postindex_new/default.aspx?lang=en",
                             "country": "Ukraine",
+                            "courier": "Ukrposhta",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/ukraine.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="AE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/united-arab-emirates.html",
-                            "courier": "Emirates Post",
                             "courier_url": "http://www.emiratespost.com/content/english/index.jsp;jsessionid=35fbe352a6c441a491929d81d54fa0c6",
                             "country": "United Arab Emirates",
+                            "courier": "Emirates Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/united-arab-emirates.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="US"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/united-states-of-america.html",
-                            "courier": "United States Postal Service",
                             "courier_url": "http://zip4.usps.com/zip4/welcome.jsp",
                             "country": "United States of America",
+                            "courier": "United States Postal Service",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/united-states-of-america.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="UY"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/uruguay.html",
-                            "courier": "Correo Uruguayo",
                             "courier_url": "http://www.correo.com.uy/index.asp?codPag=codPost&switchMapa=codPost",
                             "country": "Uruguay",
+                            "courier": "Correo Uruguayo",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/uruguay.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="UZ"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/uzbekistan.html",
-                            "courier": "Post of Uzbekistan",
                             "courier_url": "http://www.pochta.uz/index.php/en/postal-indexes/9",
                             "country": "Uzbekistan",
+                            "courier": "Post of Uzbekistan",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/eastern-europe-and-northern-asia/uzbekistan.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="VU"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/vanuatu.html",
-                            "courier": "Vanuatu Post",
                             "courier_url": "http://www.vanuatupost.vu/",
                             "country": "Vanuatu",
+                            "courier": "Vanuatu Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/vanuatu.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="VA"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/vatican.html",
-                            "courier": "Vatican post",
                             "courier_url": "http://www.vaticanstate.va/EN/Services/Philatelic_and_Numismatic_Office/",
                             "country": "Vatican",
+                            "courier": "Vatican post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/western-europe/vatican.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="VE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/venezuela.html",
-                            "courier": "IPOSTEL – Instituto Postal Telegráfico de Venezuela",
                             "courier_url": "http://www.ipostel.gob.ve/nlinea/codigo_postal.php",
                             "country": "Venezuela",
+                            "courier": "IPOSTEL – Instituto Postal Telegráfico de Venezuela",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/americas/venezuela.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="VN"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/viet-nam.html",
-                            "courier": "VNPT – Vietnam Posts and Telecommunications Group",
                             "courier_url": "http://postcode.vnpost.vn/services/search.aspx",
                             "country": "Viet Nam",
+                            "courier": "VNPT – Vietnam Posts and Telecommunications Group",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/viet-nam.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="YE"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/yemen.html",
-                            "courier": "Yemen Post",
                             "courier_url": "http://www.post.ye/",
                             "country": "Yemen",
+                            "courier": "Yemen Post",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/southern-asia-and-oceania/yemen.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="ZM"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/zambia.html",
-                            "courier": "Zambia Postal Services Corporation (ZAMPOST)",
                             "courier_url": "http://www.zampost.com.zm/",
                             "country": "Zambia",
+                            "courier": "Zambia Postal Services Corporation (ZAMPOST)",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/zambia.html",
                         },
                     ),
                     (
                         ExactValueMatcher(value="ZW"),
                         {
-                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/zimbabwe.html",
-                            "courier": "Zimpost – Zimbabwe Posts",
                             "courier_url": "http://www.zimpost.co.zw/",
                             "country": "Zimbabwe",
+                            "courier": "Zimpost – Zimbabwe Posts",
+                            "upu_reference_url": "http://www.upu.int/en/the-upu/member-countries/africa/zimbabwe.html",
                         },
                     ),
                 ],
@@ -2439,2001 +2451,2001 @@ DEFINITIONS = [
                     (
                         ExactValueMatcher(value="818"),
                         {
+                            "country_short_code": "EG",
                             "country_code": "EGY",
                             "country": "Aegypten",
-                            "country_short_code": "EG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="226"),
                         {
+                            "country_short_code": "GQ",
                             "country_code": "GNQ",
                             "country": "Aequatorial-Guinea",
-                            "country_short_code": "GQ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="231"),
                         {
+                            "country_short_code": "ET",
                             "country_code": "ETH",
                             "country": "Aethiopien",
-                            "country_short_code": "ET",
                         },
                     ),
                     (
                         ExactValueMatcher(value="004"),
                         {
+                            "country_short_code": "AF",
                             "country_code": "AFG",
                             "country": "Afghanistan",
-                            "country_short_code": "AF",
                         },
                     ),
                     (
                         ExactValueMatcher(value="248"),
                         {
+                            "country_short_code": "AX",
                             "country_code": "ALA",
                             "country": "Aland-Inseln",
-                            "country_short_code": "AX",
                         },
                     ),
                     (
                         ExactValueMatcher(value="008"),
                         {
+                            "country_short_code": "AL",
                             "country_code": "ALB",
                             "country": "Albanien",
-                            "country_short_code": "AL",
                         },
                     ),
                     (
                         ExactValueMatcher(value="012"),
                         {
+                            "country_short_code": "DZ",
                             "country_code": "DZA",
                             "country": "Algerien",
-                            "country_short_code": "DZ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="016"),
                         {
+                            "country_short_code": "AS",
                             "country_code": "ASM",
                             "country": "Amerikanisch-Samoa",
-                            "country_short_code": "AS",
                         },
                     ),
                     (
                         ExactValueMatcher(value="020"),
                         {
+                            "country_short_code": "AD",
                             "country_code": "AND",
                             "country": "Andorra",
-                            "country_short_code": "AD",
                         },
                     ),
                     (
                         ExactValueMatcher(value="024"),
                         {
+                            "country_short_code": "AO",
                             "country_code": "AGO",
                             "country": "Angola",
-                            "country_short_code": "AO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="660"),
                         {
+                            "country_short_code": "AI",
                             "country_code": "AIA",
                             "country": "Anguilla",
-                            "country_short_code": "AI",
                         },
                     ),
                     (
                         ExactValueMatcher(value="010"),
                         {
+                            "country_short_code": "AQ",
                             "country_code": "ATA",
                             "country": "Antarctica",
-                            "country_short_code": "AQ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="028"),
                         {
+                            "country_short_code": "AG",
                             "country_code": "ATG",
                             "country": "Antigua & Barbuda",
-                            "country_short_code": "AG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="032"),
                         {
+                            "country_short_code": "AR",
                             "country_code": "ARG",
                             "country": "Argentinien",
-                            "country_short_code": "AR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="051"),
                         {
+                            "country_short_code": "AM",
                             "country_code": "ARM",
                             "country": "Armenien",
-                            "country_short_code": "AM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="533"),
                         {
+                            "country_short_code": "AW",
                             "country_code": "ABW",
                             "country": "Aruba",
-                            "country_short_code": "AW",
                         },
                     ),
                     (
                         ExactValueMatcher(value="031"),
                         {
+                            "country_short_code": "AZ",
                             "country_code": "AZE",
                             "country": "Aserbaidschan",
-                            "country_short_code": "AZ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="036"),
                         {
+                            "country_short_code": "AU",
                             "country_code": "AUS",
                             "country": "Australien",
-                            "country_short_code": "AU",
                         },
                     ),
                     (
                         ExactValueMatcher(value="044"),
                         {
+                            "country_short_code": "BS",
                             "country_code": "BHS",
                             "country": "Bahamas",
-                            "country_short_code": "BS",
                         },
                     ),
                     (
                         ExactValueMatcher(value="048"),
                         {
+                            "country_short_code": "BH",
                             "country_code": "BHR",
                             "country": "Bahrain",
-                            "country_short_code": "BH",
                         },
                     ),
                     (
                         ExactValueMatcher(value="050"),
                         {
+                            "country_short_code": "BD",
                             "country_code": "BGD",
                             "country": "Bangladesh",
-                            "country_short_code": "BD",
                         },
                     ),
                     (
                         ExactValueMatcher(value="052"),
                         {
+                            "country_short_code": "BB",
                             "country_code": "BRB",
                             "country": "Barbados",
-                            "country_short_code": "BB",
                         },
                     ),
                     (
                         ExactValueMatcher(value="056"),
                         {
+                            "country_short_code": "BE",
                             "country_code": "BEL",
                             "country": "Belgien",
-                            "country_short_code": "BE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="084"),
                         {
+                            "country_short_code": "BZ",
                             "country_code": "BLZ",
                             "country": "Belize",
-                            "country_short_code": "BZ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="204"),
                         {
+                            "country_short_code": "BJ",
                             "country_code": "BEN",
                             "country": "Benin",
-                            "country_short_code": "BJ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="060"),
                         {
+                            "country_short_code": "BM",
                             "country_code": "BMU",
                             "country": "Bermudas",
-                            "country_short_code": "BM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="064"),
                         {
+                            "country_short_code": "BT",
                             "country_code": "BTN",
                             "country": "Bhutan",
-                            "country_short_code": "BT",
                         },
                     ),
                     (
                         ExactValueMatcher(value="068"),
                         {
+                            "country_short_code": "BO",
                             "country_code": "BOL",
                             "country": "Bolivien",
-                            "country_short_code": "BO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="535"),
                         {
+                            "country_short_code": "BQ",
                             "country_code": "BES",
                             "country": "Bonaire, Sint Eustatius und Saba",
-                            "country_short_code": "BQ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="070"),
                         {
+                            "country_short_code": "BA",
                             "country_code": "BIH",
                             "country": "Bosnien & Herzegowina",
-                            "country_short_code": "BA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="072"),
                         {
+                            "country_short_code": "BW",
                             "country_code": "BWA",
                             "country": "Botswana",
-                            "country_short_code": "BW",
                         },
                     ),
                     (
                         ExactValueMatcher(value="074"),
                         {
+                            "country_short_code": "BV",
                             "country_code": "BVT",
                             "country": "Bouvet-Insel",
-                            "country_short_code": "BV",
                         },
                     ),
                     (
                         ExactValueMatcher(value="076"),
                         {
+                            "country_short_code": "BR",
                             "country_code": "BRA",
                             "country": "Brasilien",
-                            "country_short_code": "BR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="086"),
                         {
+                            "country_short_code": "IO",
                             "country_code": "IOT",
                             "country": "British Indian Ocean Territory",
-                            "country_short_code": "IO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="096"),
                         {
+                            "country_short_code": "BN",
                             "country_code": "BRN",
                             "country": "Brunei Darussalam",
-                            "country_short_code": "BN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="100"),
                         {
+                            "country_short_code": "BG",
                             "country_code": "BGR",
                             "country": "Bulgarien",
-                            "country_short_code": "BG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="854"),
                         {
+                            "country_short_code": "BF",
                             "country_code": "BFA",
                             "country": "Burkina Faso",
-                            "country_short_code": "BF",
                         },
                     ),
                     (
                         ExactValueMatcher(value="108"),
                         {
+                            "country_short_code": "BI",
                             "country_code": "BDI",
                             "country": "Burundi",
-                            "country_short_code": "BI",
                         },
                     ),
                     (
                         ExactValueMatcher(value="136"),
                         {
+                            "country_short_code": "KY",
                             "country_code": "CYM",
                             "country": "Cayman-Inseln",
-                            "country_short_code": "KY",
                         },
                     ),
                     (
                         ExactValueMatcher(value="152"),
                         {
+                            "country_short_code": "CL",
                             "country_code": "CHL",
                             "country": "Chile",
-                            "country_short_code": "CL",
                         },
                     ),
                     (
                         ExactValueMatcher(value="156"),
                         {
+                            "country_short_code": "CN",
                             "country_code": "CHN",
                             "country": "China",
-                            "country_short_code": "CN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="184"),
                         {
+                            "country_short_code": "CK",
                             "country_code": "COK",
                             "country": "Cook Inseln",
-                            "country_short_code": "CK",
                         },
                     ),
                     (
                         ExactValueMatcher(value="188"),
                         {
+                            "country_short_code": "CR",
                             "country_code": "CRI",
                             "country": "Costa Rica",
-                            "country_short_code": "CR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="531"),
                         {
+                            "country_short_code": "CW",
                             "country_code": "CUW",
                             "country": "Curacao",
-                            "country_short_code": "CW",
                         },
                     ),
                     (
                         ExactValueMatcher(value="208"),
                         {
+                            "country_short_code": "DK",
                             "country_code": "DNK",
                             "country": "Daenemark",
-                            "country_short_code": "DK",
                         },
                     ),
                     (
                         ExactValueMatcher(value="276"),
                         {
+                            "country_short_code": "DE",
                             "country_code": "DEU",
                             "country": "Deutschland",
-                            "country_short_code": "DE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="212"),
                         {
+                            "country_short_code": "DM",
                             "country_code": "DMA",
                             "country": "Dominica",
-                            "country_short_code": "DM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="214"),
                         {
+                            "country_short_code": "DO",
                             "country_code": "DOM",
                             "country": "Dominikanische Republik",
-                            "country_short_code": "DO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="262"),
                         {
+                            "country_short_code": "DJ",
                             "country_code": "DJI",
                             "country": "Dschibuti",
-                            "country_short_code": "DJ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="218"),
                         {
+                            "country_short_code": "EC",
                             "country_code": "ECU",
                             "country": "Ecuador",
-                            "country_short_code": "EC",
                         },
                     ),
                     (
                         ExactValueMatcher(value="222"),
                         {
+                            "country_short_code": "SV",
                             "country_code": "SLV",
                             "country": "El Salvador",
-                            "country_short_code": "SV",
                         },
                     ),
                     (
                         ExactValueMatcher(value="384"),
                         {
+                            "country_short_code": "CI",
                             "country_code": "CIV",
                             "country": "Elfenbeinkueste",
-                            "country_short_code": "CI",
                         },
                     ),
                     (
                         ExactValueMatcher(value="232"),
                         {
+                            "country_short_code": "ER",
                             "country_code": "ERI",
                             "country": "Eritrea",
-                            "country_short_code": "ER",
                         },
                     ),
                     (
                         ExactValueMatcher(value="233"),
                         {
+                            "country_short_code": "EE",
                             "country_code": "EST",
                             "country": "Estland",
-                            "country_short_code": "EE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="234"),
                         {
+                            "country_short_code": "FO",
                             "country_code": "FRO",
                             "country": "Faeroer Inseln",
-                            "country_short_code": "FO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="238"),
                         {
+                            "country_short_code": "FK",
                             "country_code": "FLK",
                             "country": "Falkland Inseln",
-                            "country_short_code": "FK",
                         },
                     ),
                     (
                         ExactValueMatcher(value="242"),
                         {
+                            "country_short_code": "FJ",
                             "country_code": "FJI",
                             "country": "Fidschi",
-                            "country_short_code": "FJ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="246"),
                         {
+                            "country_short_code": "FI",
                             "country_code": "FIN",
                             "country": "Finnland",
-                            "country_short_code": "FI",
                         },
                     ),
                     (
                         ExactValueMatcher(value="250"),
                         {
+                            "country_short_code": "FR",
                             "country_code": "FRA",
                             "country": "Frankreich",
-                            "country_short_code": "FR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="260"),
                         {
+                            "country_short_code": "TF",
                             "country_code": "ATF",
                             "country": "Franzoesische Sued- und Antarktisterritorien",
-                            "country_short_code": "TF",
                         },
                     ),
                     (
                         ExactValueMatcher(value="258"),
                         {
+                            "country_short_code": "PF",
                             "country_code": "PYF",
                             "country": "Franzoesisch-Polynesien",
-                            "country_short_code": "PF",
                         },
                     ),
                     (
                         ExactValueMatcher(value="266"),
                         {
+                            "country_short_code": "GA",
                             "country_code": "GAB",
                             "country": "Gabun",
-                            "country_short_code": "GA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="270"),
                         {
+                            "country_short_code": "GM",
                             "country_code": "GMB",
                             "country": "Gambia",
-                            "country_short_code": "GM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="268"),
                         {
+                            "country_short_code": "GE",
                             "country_code": "GEO",
                             "country": "Georgien",
-                            "country_short_code": "GE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="288"),
                         {
+                            "country_short_code": "GH",
                             "country_code": "GHA",
                             "country": "Ghana",
-                            "country_short_code": "GH",
                         },
                     ),
                     (
                         ExactValueMatcher(value="292"),
                         {
+                            "country_short_code": "GI",
                             "country_code": "GIB",
                             "country": "Gibraltar",
-                            "country_short_code": "GI",
                         },
                     ),
                     (
                         ExactValueMatcher(value="308"),
                         {
+                            "country_short_code": "GD",
                             "country_code": "GRD",
                             "country": "Grenada",
-                            "country_short_code": "GD",
                         },
                     ),
                     (
                         ExactValueMatcher(value="300"),
                         {
+                            "country_short_code": "GR",
                             "country_code": "GRC",
                             "country": "Griechenland",
-                            "country_short_code": "GR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="304"),
                         {
+                            "country_short_code": "GL",
                             "country_code": "GRL",
                             "country": "Groenland",
-                            "country_short_code": "GL",
                         },
                     ),
                     (
                         ExactValueMatcher(value="826"),
                         {
+                            "country_short_code": "GB",
                             "country_code": "GBR",
                             "country": "Grossbritannien & Nordirland",
-                            "country_short_code": "GB",
                         },
                     ),
                     (
                         ExactValueMatcher(value="312"),
                         {
+                            "country_short_code": "GP",
                             "country_code": "GLP",
                             "country": "Guadeloupe",
-                            "country_short_code": "GP",
                         },
                     ),
                     (
                         ExactValueMatcher(value="316"),
                         {
+                            "country_short_code": "GU",
                             "country_code": "GUM",
                             "country": "Guam",
-                            "country_short_code": "GU",
                         },
                     ),
                     (
                         ExactValueMatcher(value="320"),
                         {
+                            "country_short_code": "GT",
                             "country_code": "GTM",
                             "country": "Guatemala",
-                            "country_short_code": "GT",
                         },
                     ),
                     (
                         ExactValueMatcher(value="831"),
                         {
+                            "country_short_code": "GG",
                             "country_code": "GGY",
                             "country": "Guernsey",
-                            "country_short_code": "GG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="324"),
                         {
+                            "country_short_code": "GN",
                             "country_code": "GIN",
                             "country": "Guinea",
-                            "country_short_code": "GN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="624"),
                         {
+                            "country_short_code": "GW",
                             "country_code": "GNB",
                             "country": "Guinea-Bissau",
-                            "country_short_code": "GW",
                         },
                     ),
                     (
                         ExactValueMatcher(value="328"),
                         {
+                            "country_short_code": "GY",
                             "country_code": "GUY",
                             "country": "Guyana",
-                            "country_short_code": "GY",
                         },
                     ),
                     (
                         ExactValueMatcher(value="254"),
                         {
+                            "country_short_code": "GF",
                             "country_code": "GUF",
                             "country": "Guyana (Franzoesisch)",
-                            "country_short_code": "GF",
                         },
                     ),
                     (
                         ExactValueMatcher(value="332"),
                         {
+                            "country_short_code": "HT",
                             "country_code": "HTI",
                             "country": "Haiti",
-                            "country_short_code": "HT",
                         },
                     ),
                     (
                         ExactValueMatcher(value="334"),
                         {
+                            "country_short_code": "HM",
                             "country_code": "HMD",
                             "country": "Heard & Mc Donalds Inseln",
-                            "country_short_code": "HM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="340"),
                         {
+                            "country_short_code": "HN",
                             "country_code": "HND",
                             "country": "Honduras",
-                            "country_short_code": "HN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="344"),
                         {
+                            "country_short_code": "HK",
                             "country_code": "HKG",
                             "country": "Hong Kong",
-                            "country_short_code": "HK",
                         },
                     ),
                     (
                         ExactValueMatcher(value="356"),
                         {
+                            "country_short_code": "IN",
                             "country_code": "IND",
                             "country": "Indien",
-                            "country_short_code": "IN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="360"),
                         {
+                            "country_short_code": "ID",
                             "country_code": "IDN",
                             "country": "Indonesien",
-                            "country_short_code": "ID",
                         },
                     ),
                     (
                         ExactValueMatcher(value="364"),
                         {
+                            "country_short_code": "IR",
                             "country_code": "IRN",
                             "country": "Iran",
-                            "country_short_code": "IR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="368"),
                         {
+                            "country_short_code": "IQ",
                             "country_code": "IRQ",
                             "country": "Iraq",
-                            "country_short_code": "IQ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="372"),
                         {
+                            "country_short_code": "IE",
                             "country_code": "IRL",
                             "country": "Irland",
-                            "country_short_code": "IE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="352"),
                         {
+                            "country_short_code": "IS",
                             "country_code": "ISL",
                             "country": "Island",
-                            "country_short_code": "IS",
                         },
                     ),
                     (
                         ExactValueMatcher(value="833"),
                         {
+                            "country_short_code": "IM",
                             "country_code": "IMN",
                             "country": "Isle of Man",
-                            "country_short_code": "IM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="376"),
                         {
+                            "country_short_code": "IL",
                             "country_code": "ISR",
                             "country": "Israel",
-                            "country_short_code": "IL",
                         },
                     ),
                     (
                         ExactValueMatcher(value="380"),
                         {
+                            "country_short_code": "IT",
                             "country_code": "ITA",
                             "country": "Italien",
-                            "country_short_code": "IT",
                         },
                     ),
                     (
                         ExactValueMatcher(value="388"),
                         {
+                            "country_short_code": "JM",
                             "country_code": "JAM",
                             "country": "Jamaika",
-                            "country_short_code": "JM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="392"),
                         {
+                            "country_short_code": "JP",
                             "country_code": "JPN",
                             "country": "Japan",
-                            "country_short_code": "JP",
                         },
                     ),
                     (
                         ExactValueMatcher(value="887"),
                         {
+                            "country_short_code": "YE",
                             "country_code": "YEM",
                             "country": "Jemen",
-                            "country_short_code": "YE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="832"),
                         {
+                            "country_short_code": "JE",
                             "country_code": "JEY",
                             "country": "Jersey",
-                            "country_short_code": "JE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="400"),
                         {
+                            "country_short_code": "JO",
                             "country_code": "JOR",
                             "country": "Jordanien",
-                            "country_short_code": "JO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="092"),
                         {
+                            "country_short_code": "VG",
                             "country_code": "VGB",
                             "country": "Jungferninseln (britisch)",
-                            "country_short_code": "VG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="116"),
                         {
+                            "country_short_code": "KH",
                             "country_code": "KHM",
                             "country": "Kambodscha",
-                            "country_short_code": "KH",
                         },
                     ),
                     (
                         ExactValueMatcher(value="120"),
                         {
+                            "country_short_code": "CM",
                             "country_code": "CMR",
                             "country": "Kamerun",
-                            "country_short_code": "CM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="124"),
                         {
+                            "country_short_code": "CA",
                             "country_code": "CAN",
                             "country": "Kanada",
-                            "country_short_code": "CA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="991"),
                         {
+                            "country_short_code": "IC",
                             "country_code": "ISC",
                             "country": "Kanarische Inseln",
-                            "country_short_code": "IC",
                         },
                     ),
                     (
                         ExactValueMatcher(value="132"),
                         {
+                            "country_short_code": "CV",
                             "country_code": "CPV",
                             "country": "Kapverdische Inseln",
-                            "country_short_code": "CV",
                         },
                     ),
                     (
                         ExactValueMatcher(value="583"),
                         {
+                            "country_short_code": "FM",
                             "country_code": "FSM",
                             "country": "Karolinen Inseln",
-                            "country_short_code": "FM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="398"),
                         {
+                            "country_short_code": "KZ",
                             "country_code": "KAZ",
                             "country": "Kasachstan",
-                            "country_short_code": "KZ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="634"),
                         {
+                            "country_short_code": "QA",
                             "country_code": "QAT",
                             "country": "Katar",
-                            "country_short_code": "QA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="404"),
                         {
+                            "country_short_code": "KE",
                             "country_code": "KEN",
                             "country": "Kenia",
-                            "country_short_code": "KE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="417"),
                         {
+                            "country_short_code": "KG",
                             "country_code": "KGZ",
                             "country": "Kirgistan",
-                            "country_short_code": "KG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="296"),
                         {
+                            "country_short_code": "KI",
                             "country_code": "KIR",
                             "country": "Kiribati",
-                            "country_short_code": "KI",
                         },
                     ),
                     (
                         ExactValueMatcher(value="581"),
                         {
+                            "country_short_code": "UM",
                             "country_code": "UMI",
                             "country": "Kleine vorgelagerte Inseln Vereinigter Staaten",
-                            "country_short_code": "UM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="166"),
                         {
+                            "country_short_code": "CC",
                             "country_code": "CCK",
                             "country": "Kokos Inseln",
-                            "country_short_code": "CC",
                         },
                     ),
                     (
                         ExactValueMatcher(value="170"),
                         {
+                            "country_short_code": "CO",
                             "country_code": "COL",
                             "country": "Kolumbien",
-                            "country_short_code": "CO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="174"),
                         {
+                            "country_short_code": "KM",
                             "country_code": "COM",
                             "country": "Komoren",
-                            "country_short_code": "KM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="178"),
                         {
+                            "country_short_code": "CG",
                             "country_code": "COG",
                             "country": "Kongo",
-                            "country_short_code": "CG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="180"),
                         {
+                            "country_short_code": "CD",
                             "country_code": "COD",
                             "country": "Kongo, Dem. Rep.",
-                            "country_short_code": "CD",
                         },
                     ),
                     (
                         ExactValueMatcher(value="191"),
                         {
+                            "country_short_code": "HR",
                             "country_code": "HRV",
                             "country": "Kroatien",
-                            "country_short_code": "HR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="192"),
                         {
+                            "country_short_code": "CU",
                             "country_code": "CUB",
                             "country": "Kuba",
-                            "country_short_code": "CU",
                         },
                     ),
                     (
                         ExactValueMatcher(value="414"),
                         {
+                            "country_short_code": "KW",
                             "country_code": "KWT",
                             "country": "Kuwait",
-                            "country_short_code": "KW",
                         },
                     ),
                     (
                         ExactValueMatcher(value="418"),
                         {
+                            "country_short_code": "LA",
                             "country_code": "LAO",
                             "country": "Laos",
-                            "country_short_code": "LA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="426"),
                         {
+                            "country_short_code": "LS",
                             "country_code": "LSO",
                             "country": "Lesotho",
-                            "country_short_code": "LS",
                         },
                     ),
                     (
                         ExactValueMatcher(value="428"),
                         {
+                            "country_short_code": "LV",
                             "country_code": "LVA",
                             "country": "Lettland",
-                            "country_short_code": "LV",
                         },
                     ),
                     (
                         ExactValueMatcher(value="422"),
                         {
+                            "country_short_code": "LB",
                             "country_code": "LBN",
                             "country": "Libanon",
-                            "country_short_code": "LB",
                         },
                     ),
                     (
                         ExactValueMatcher(value="430"),
                         {
+                            "country_short_code": "LR",
                             "country_code": "LBR",
                             "country": "Liberia",
-                            "country_short_code": "LR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="434"),
                         {
+                            "country_short_code": "LY",
                             "country_code": "LBY",
                             "country": "Libyen",
-                            "country_short_code": "LY",
                         },
                     ),
                     (
                         ExactValueMatcher(value="438"),
                         {
+                            "country_short_code": "LI",
                             "country_code": "LIE",
                             "country": "Liechtenstein",
-                            "country_short_code": "LI",
                         },
                     ),
                     (
                         ExactValueMatcher(value="440"),
                         {
+                            "country_short_code": "LT",
                             "country_code": "LTU",
                             "country": "Litauen",
-                            "country_short_code": "LT",
                         },
                     ),
                     (
                         ExactValueMatcher(value="442"),
                         {
+                            "country_short_code": "LU",
                             "country_code": "LUX",
                             "country": "Luxemburg",
-                            "country_short_code": "LU",
                         },
                     ),
                     (
                         ExactValueMatcher(value="446"),
                         {
+                            "country_short_code": "MO",
                             "country_code": "MAC",
                             "country": "Macao",
-                            "country_short_code": "MO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="450"),
                         {
+                            "country_short_code": "MG",
                             "country_code": "MDG",
                             "country": "Madagaskar",
-                            "country_short_code": "MG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="454"),
                         {
+                            "country_short_code": "MW",
                             "country_code": "MWI",
                             "country": "Malawi",
-                            "country_short_code": "MW",
                         },
                     ),
                     (
                         ExactValueMatcher(value="458"),
                         {
+                            "country_short_code": "MY",
                             "country_code": "MYS",
                             "country": "Malaysia",
-                            "country_short_code": "MY",
                         },
                     ),
                     (
                         ExactValueMatcher(value="462"),
                         {
+                            "country_short_code": "MV",
                             "country_code": "MDV",
                             "country": "Malediven",
-                            "country_short_code": "MV",
                         },
                     ),
                     (
                         ExactValueMatcher(value="466"),
                         {
+                            "country_short_code": "ML",
                             "country_code": "MLI",
                             "country": "Mali",
-                            "country_short_code": "ML",
                         },
                     ),
                     (
                         ExactValueMatcher(value="470"),
                         {
+                            "country_short_code": "MT",
                             "country_code": "MLT",
                             "country": "Malta",
-                            "country_short_code": "MT",
                         },
                     ),
                     (
                         ExactValueMatcher(value="504"),
                         {
+                            "country_short_code": "MA",
                             "country_code": "MAR",
                             "country": "Marokko",
-                            "country_short_code": "MA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="584"),
                         {
+                            "country_short_code": "MH",
                             "country_code": "MHL",
                             "country": "Marshall Inseln",
-                            "country_short_code": "MH",
                         },
                     ),
                     (
                         ExactValueMatcher(value="474"),
                         {
+                            "country_short_code": "MQ",
                             "country_code": "MTQ",
                             "country": "Martinique",
-                            "country_short_code": "MQ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="478"),
                         {
+                            "country_short_code": "MR",
                             "country_code": "MRT",
                             "country": "Mauretanien",
-                            "country_short_code": "MR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="480"),
                         {
+                            "country_short_code": "MU",
                             "country_code": "MUS",
                             "country": "Mauritius",
-                            "country_short_code": "MU",
                         },
                     ),
                     (
                         ExactValueMatcher(value="175"),
                         {
+                            "country_short_code": "YT",
                             "country_code": "MYT",
                             "country": "Mayotte",
-                            "country_short_code": "YT",
                         },
                     ),
                     (
                         ExactValueMatcher(value="807"),
                         {
+                            "country_short_code": "MK",
                             "country_code": "MKD",
                             "country": "Mazedonien",
-                            "country_short_code": "MK",
                         },
                     ),
                     (
                         ExactValueMatcher(value="484"),
                         {
+                            "country_short_code": "MX",
                             "country_code": "MEX",
                             "country": "Mexiko",
-                            "country_short_code": "MX",
                         },
                     ),
                     (
                         ExactValueMatcher(value="498"),
                         {
+                            "country_short_code": "MD",
                             "country_code": "MDA",
                             "country": "Moldawien",
-                            "country_short_code": "MD",
                         },
                     ),
                     (
                         ExactValueMatcher(value="492"),
                         {
+                            "country_short_code": "MC",
                             "country_code": "MCO",
                             "country": "Monaco",
-                            "country_short_code": "MC",
                         },
                     ),
                     (
                         ExactValueMatcher(value="496"),
                         {
+                            "country_short_code": "MN",
                             "country_code": "MNG",
                             "country": "Mongolei",
-                            "country_short_code": "MN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="499"),
                         {
+                            "country_short_code": "ME",
                             "country_code": "MNE",
                             "country": "Montenegro",
-                            "country_short_code": "ME",
                         },
                     ),
                     (
                         ExactValueMatcher(value="500"),
                         {
+                            "country_short_code": "MS",
                             "country_code": "MSR",
                             "country": "Montserrat",
-                            "country_short_code": "MS",
                         },
                     ),
                     (
                         ExactValueMatcher(value="508"),
                         {
+                            "country_short_code": "MZ",
                             "country_code": "MOZ",
                             "country": "Mosambik",
-                            "country_short_code": "MZ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="104"),
                         {
+                            "country_short_code": "MM",
                             "country_code": "MMR",
                             "country": "Myanmar",
-                            "country_short_code": "MM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="516"),
                         {
+                            "country_short_code": "NA",
                             "country_code": "NAM",
                             "country": "Namibia",
-                            "country_short_code": "NA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="520"),
                         {
+                            "country_short_code": "NR",
                             "country_code": "NRU",
                             "country": "Nauru",
-                            "country_short_code": "NR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="524"),
                         {
+                            "country_short_code": "NP",
                             "country_code": "NPL",
                             "country": "Nepal",
-                            "country_short_code": "NP",
                         },
                     ),
                     (
                         ExactValueMatcher(value="540"),
                         {
+                            "country_short_code": "NC",
                             "country_code": "NCL",
                             "country": "Neukaledonien",
-                            "country_short_code": "NC",
                         },
                     ),
                     (
                         ExactValueMatcher(value="554"),
                         {
+                            "country_short_code": "NZ",
                             "country_code": "NZL",
                             "country": "Neuseeland",
-                            "country_short_code": "NZ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="558"),
                         {
+                            "country_short_code": "NI",
                             "country_code": "NIC",
                             "country": "Nicaragua",
-                            "country_short_code": "NI",
                         },
                     ),
                     (
                         ExactValueMatcher(value="530"),
                         {
+                            "country_short_code": "AN",
                             "country_code": "ANT",
                             "country": "Niederlaendische Antillen",
-                            "country_short_code": "AN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="528"),
                         {
+                            "country_short_code": "NL",
                             "country_code": "NLD",
                             "country": "Niederlande",
-                            "country_short_code": "NL",
                         },
                     ),
                     (
                         ExactValueMatcher(value="562"),
                         {
+                            "country_short_code": "NE",
                             "country_code": "NER",
                             "country": "Niger",
-                            "country_short_code": "NE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="566"),
                         {
+                            "country_short_code": "NG",
                             "country_code": "NGA",
                             "country": "Nigeria",
-                            "country_short_code": "NG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="570"),
                         {
+                            "country_short_code": "NU",
                             "country_code": "NIU",
                             "country": "Niue",
-                            "country_short_code": "NU",
                         },
                     ),
                     (
                         ExactValueMatcher(value="580"),
                         {
+                            "country_short_code": "MP",
                             "country_code": "MNP",
                             "country": "Noerdliche Marianen",
-                            "country_short_code": "MP",
                         },
                     ),
                     (
                         ExactValueMatcher(value="408"),
                         {
+                            "country_short_code": "KP",
                             "country_code": "PRK",
                             "country": "Nordkorea",
-                            "country_short_code": "KP",
                         },
                     ),
                     (
                         ExactValueMatcher(value="574"),
                         {
+                            "country_short_code": "NF",
                             "country_code": "NFK",
                             "country": "Norfolk Inseln",
-                            "country_short_code": "NF",
                         },
                     ),
                     (
                         ExactValueMatcher(value="578"),
                         {
+                            "country_short_code": "NO",
                             "country_code": "NOR",
                             "country": "Norwegen",
-                            "country_short_code": "NO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="040"),
                         {
+                            "country_short_code": "AT",
                             "country_code": "AUT",
                             "country": "Oesterreich",
-                            "country_short_code": "AT",
                         },
                     ),
                     (
                         ExactValueMatcher(value="512"),
                         {
+                            "country_short_code": "OM",
                             "country_code": "OMN",
                             "country": "Oman",
-                            "country_short_code": "OM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="626"),
                         {
+                            "country_short_code": "TL",
                             "country_code": "TLS",
                             "country": "Osttimor",
-                            "country_short_code": "TL",
                         },
                     ),
                     (
                         ExactValueMatcher(value="586"),
                         {
+                            "country_short_code": "PK",
                             "country_code": "PAK",
                             "country": "Pakistan",
-                            "country_short_code": "PK",
                         },
                     ),
                     (
                         ExactValueMatcher(value="275"),
                         {
+                            "country_short_code": "PS",
                             "country_code": "PSE",
                             "country": "Palaestina",
-                            "country_short_code": "PS",
                         },
                     ),
                     (
                         ExactValueMatcher(value="585"),
                         {
+                            "country_short_code": "PW",
                             "country_code": "PLW",
                             "country": "Palau",
-                            "country_short_code": "PW",
                         },
                     ),
                     (
                         ExactValueMatcher(value="591"),
                         {
+                            "country_short_code": "PA",
                             "country_code": "PAN",
                             "country": "Panama",
-                            "country_short_code": "PA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="598"),
                         {
+                            "country_short_code": "PG",
                             "country_code": "PNG",
                             "country": "Papua-Neuguinea",
-                            "country_short_code": "PG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="600"),
                         {
+                            "country_short_code": "PY",
                             "country_code": "PRY",
                             "country": "Paraguay",
-                            "country_short_code": "PY",
                         },
                     ),
                     (
                         ExactValueMatcher(value="604"),
                         {
+                            "country_short_code": "PE",
                             "country_code": "PER",
                             "country": "Peru",
-                            "country_short_code": "PE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="608"),
                         {
+                            "country_short_code": "PH",
                             "country_code": "PHL",
                             "country": "Philippinen",
-                            "country_short_code": "PH",
                         },
                     ),
                     (
                         ExactValueMatcher(value="612"),
                         {
+                            "country_short_code": "PN",
                             "country_code": "PCN",
                             "country": "Pitcairn",
-                            "country_short_code": "PN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="616"),
                         {
+                            "country_short_code": "PL",
                             "country_code": "POL",
                             "country": "Polen",
-                            "country_short_code": "PL",
                         },
                     ),
                     (
                         ExactValueMatcher(value="620"),
                         {
+                            "country_short_code": "PT",
                             "country_code": "PRT",
                             "country": "Portugal",
-                            "country_short_code": "PT",
                         },
                     ),
                     (
                         ExactValueMatcher(value="630"),
                         {
+                            "country_short_code": "PR",
                             "country_code": "PRI",
                             "country": "Puerto Rico",
-                            "country_short_code": "PR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="638"),
                         {
+                            "country_short_code": "RE",
                             "country_code": "REU",
                             "country": "Reunion",
-                            "country_short_code": "RE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="646"),
                         {
+                            "country_short_code": "RW",
                             "country_code": "RWA",
                             "country": "Ruanda",
-                            "country_short_code": "RW",
                         },
                     ),
                     (
                         ExactValueMatcher(value="642"),
                         {
+                            "country_short_code": "RO",
                             "country_code": "ROU",
                             "country": "Rumaenien",
-                            "country_short_code": "RO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="643"),
                         {
+                            "country_short_code": "RU",
                             "country_code": "RUS",
                             "country": "Russland",
-                            "country_short_code": "RU",
                         },
                     ),
                     (
                         ExactValueMatcher(value="663"),
                         {
+                            "country_short_code": "MF",
                             "country_code": "MAF",
                             "country": "Saint Martin",
-                            "country_short_code": "MF",
                         },
                     ),
                     (
                         ExactValueMatcher(value="894"),
                         {
+                            "country_short_code": "ZM",
                             "country_code": "ZMB",
                             "country": "Samibia",
-                            "country_short_code": "ZM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="882"),
                         {
+                            "country_short_code": "WS",
                             "country_code": "WSM",
                             "country": "Samoa",
-                            "country_short_code": "WS",
                         },
                     ),
                     (
                         ExactValueMatcher(value="674"),
                         {
+                            "country_short_code": "SM",
                             "country_code": "SMR",
                             "country": "San Marino",
-                            "country_short_code": "SM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="678"),
                         {
+                            "country_short_code": "ST",
                             "country_code": "STP",
                             "country": "Sao Tome & Principe",
-                            "country_short_code": "ST",
                         },
                     ),
                     (
                         ExactValueMatcher(value="682"),
                         {
+                            "country_short_code": "SA",
                             "country_code": "SAU",
                             "country": "Saudi Arabien",
-                            "country_short_code": "SA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="752"),
                         {
+                            "country_short_code": "SE",
                             "country_code": "SWE",
                             "country": "Schweden",
-                            "country_short_code": "SE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="756"),
                         {
+                            "country_short_code": "CH",
                             "country_code": "CHE",
                             "country": "Schweiz",
-                            "country_short_code": "CH",
                         },
                     ),
                     (
                         ExactValueMatcher(value="686"),
                         {
+                            "country_short_code": "SN",
                             "country_code": "SEN",
                             "country": "Senegal",
-                            "country_short_code": "SN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="688"),
                         {
+                            "country_short_code": "RS",
                             "country_code": "SRB",
                             "country": "Serbien",
-                            "country_short_code": "RS",
                         },
                     ),
                     (
                         ExactValueMatcher(value="690"),
                         {
+                            "country_short_code": "SC",
                             "country_code": "SYC",
                             "country": "Seychellen",
-                            "country_short_code": "SC",
                         },
                     ),
                     (
                         ExactValueMatcher(value="694"),
                         {
+                            "country_short_code": "SL",
                             "country_code": "SLE",
                             "country": "Sierra Leone",
-                            "country_short_code": "SL",
                         },
                     ),
                     (
                         ExactValueMatcher(value="716"),
                         {
+                            "country_short_code": "ZW",
                             "country_code": "ZWE",
                             "country": "Simbabwe",
-                            "country_short_code": "ZW",
                         },
                     ),
                     (
                         ExactValueMatcher(value="702"),
                         {
+                            "country_short_code": "SG",
                             "country_code": "SGP",
                             "country": "Singapur",
-                            "country_short_code": "SG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="534"),
                         {
+                            "country_short_code": "SX",
                             "country_code": "SXM",
                             "country": "Sint Maarten (niederlaendischer Teil)",
-                            "country_short_code": "SX",
                         },
                     ),
                     (
                         ExactValueMatcher(value="703"),
                         {
+                            "country_short_code": "SK",
                             "country_code": "SVK",
                             "country": "Slowakei",
-                            "country_short_code": "SK",
                         },
                     ),
                     (
                         ExactValueMatcher(value="705"),
                         {
+                            "country_short_code": "SI",
                             "country_code": "SVN",
                             "country": "Slowenien",
-                            "country_short_code": "SI",
                         },
                     ),
                     (
                         ExactValueMatcher(value="090"),
                         {
+                            "country_short_code": "SB",
                             "country_code": "SLB",
                             "country": "Solomon Inseln",
-                            "country_short_code": "SB",
                         },
                     ),
                     (
                         ExactValueMatcher(value="706"),
                         {
+                            "country_short_code": "SO",
                             "country_code": "SOM",
                             "country": "Somalia",
-                            "country_short_code": "SO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="724"),
                         {
+                            "country_short_code": "ES",
                             "country_code": "ESP",
                             "country": "Spanien",
-                            "country_short_code": "ES",
                         },
                     ),
                     (
                         ExactValueMatcher(value="144"),
                         {
+                            "country_short_code": "LK",
                             "country_code": "LKA",
                             "country": "Sri Lanka",
-                            "country_short_code": "LK",
                         },
                     ),
                     (
                         ExactValueMatcher(value="654"),
                         {
+                            "country_short_code": "SH",
                             "country_code": "SHN",
                             "country": "St. Helena",
-                            "country_short_code": "SH",
                         },
                     ),
                     (
                         ExactValueMatcher(value="659"),
                         {
+                            "country_short_code": "KN",
                             "country_code": "KNA",
                             "country": "St. Kitts und Nevis",
-                            "country_short_code": "KN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="662"),
                         {
+                            "country_short_code": "LC",
                             "country_code": "LCA",
                             "country": "St. Lucia",
-                            "country_short_code": "LC",
                         },
                     ),
                     (
                         ExactValueMatcher(value="666"),
                         {
+                            "country_short_code": "PM",
                             "country_code": "SPM",
                             "country": "St. Pierre & Miquelon",
-                            "country_short_code": "PM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="670"),
                         {
+                            "country_short_code": "VC",
                             "country_code": "VCT",
                             "country": "St. Vincent und die Grenadinen",
-                            "country_short_code": "VC",
                         },
                     ),
                     (
                         ExactValueMatcher(value="736"),
                         {
+                            "country_short_code": "SD",
                             "country_code": "SDN",
                             "country": "Sudan",
-                            "country_short_code": "SD",
                         },
                     ),
                     (
                         ExactValueMatcher(value="710"),
                         {
+                            "country_short_code": "ZA",
                             "country_code": "ZAF",
                             "country": "Suedafrika",
-                            "country_short_code": "ZA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="239"),
                         {
+                            "country_short_code": "GS",
                             "country_code": "SGS",
                             "country": "Suedgeorgien und die Suedlichen Sandwichinseln",
-                            "country_short_code": "GS",
                         },
                     ),
                     (
                         ExactValueMatcher(value="410"),
                         {
+                            "country_short_code": "KR",
                             "country_code": "KOR",
                             "country": "Suedkorea",
-                            "country_short_code": "KR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="728"),
                         {
+                            "country_short_code": "SS",
                             "country_code": "SSD",
                             "country": "Suedsudan",
-                            "country_short_code": "SS",
                         },
                     ),
                     (
                         ExactValueMatcher(value="740"),
                         {
+                            "country_short_code": "SR",
                             "country_code": "SUR",
                             "country": "Suriname",
-                            "country_short_code": "SR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="744"),
                         {
+                            "country_short_code": "SJ",
                             "country_code": "SJM",
                             "country": "Svalbard & Jan Mayen Inseln",
-                            "country_short_code": "SJ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="748"),
                         {
+                            "country_short_code": "SZ",
                             "country_code": "SWZ",
                             "country": "Swasiland",
-                            "country_short_code": "SZ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="760"),
                         {
+                            "country_short_code": "SY",
                             "country_code": "SYR",
                             "country": "Syrien",
-                            "country_short_code": "SY",
                         },
                     ),
                     (
                         ExactValueMatcher(value="762"),
                         {
+                            "country_short_code": "TJ",
                             "country_code": "TJK",
                             "country": "Tadschikistan",
-                            "country_short_code": "TJ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="158"),
                         {
+                            "country_short_code": "TW",
                             "country_code": "TWN",
                             "country": "Taiwan",
-                            "country_short_code": "TW",
                         },
                     ),
                     (
                         ExactValueMatcher(value="834"),
                         {
+                            "country_short_code": "TZ",
                             "country_code": "TZA",
                             "country": "Tansania",
-                            "country_short_code": "TZ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="764"),
                         {
+                            "country_short_code": "TH",
                             "country_code": "THA",
                             "country": "Thailand",
-                            "country_short_code": "TH",
                         },
                     ),
                     (
                         ExactValueMatcher(value="768"),
                         {
+                            "country_short_code": "TG",
                             "country_code": "TGO",
                             "country": "Togo",
-                            "country_short_code": "TG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="772"),
                         {
+                            "country_short_code": "TK",
                             "country_code": "TKL",
                             "country": "Tokelau",
-                            "country_short_code": "TK",
                         },
                     ),
                     (
                         ExactValueMatcher(value="776"),
                         {
+                            "country_short_code": "TO",
                             "country_code": "TON",
                             "country": "Tonga",
-                            "country_short_code": "TO",
                         },
                     ),
                     (
                         ExactValueMatcher(value="780"),
                         {
+                            "country_short_code": "TT",
                             "country_code": "TTO",
                             "country": "Trinidad & Tobago",
-                            "country_short_code": "TT",
                         },
                     ),
                     (
                         ExactValueMatcher(value="148"),
                         {
+                            "country_short_code": "TD",
                             "country_code": "TCD",
                             "country": "Tschad",
-                            "country_short_code": "TD",
                         },
                     ),
                     (
                         ExactValueMatcher(value="203"),
                         {
+                            "country_short_code": "CZ",
                             "country_code": "CZE",
                             "country": "Tschechien (Republik)",
-                            "country_short_code": "CZ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="792"),
                         {
+                            "country_short_code": "TR",
                             "country_code": "TUR",
                             "country": "Tuerkei",
-                            "country_short_code": "TR",
                         },
                     ),
                     (
                         ExactValueMatcher(value="788"),
                         {
+                            "country_short_code": "TN",
                             "country_code": "TUN",
                             "country": "Tunesien",
-                            "country_short_code": "TN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="795"),
                         {
+                            "country_short_code": "TM",
                             "country_code": "TKM",
                             "country": "Turkmenistan",
-                            "country_short_code": "TM",
                         },
                     ),
                     (
                         ExactValueMatcher(value="796"),
                         {
+                            "country_short_code": "TC",
                             "country_code": "TCA",
                             "country": "Turks & Caicos-Inseln",
-                            "country_short_code": "TC",
                         },
                     ),
                     (
                         ExactValueMatcher(value="798"),
                         {
+                            "country_short_code": "TV",
                             "country_code": "TUV",
                             "country": "Tuvalu",
-                            "country_short_code": "TV",
                         },
                     ),
                     (
                         ExactValueMatcher(value="800"),
                         {
+                            "country_short_code": "UG",
                             "country_code": "UGA",
                             "country": "Uganda",
-                            "country_short_code": "UG",
                         },
                     ),
                     (
                         ExactValueMatcher(value="804"),
                         {
+                            "country_short_code": "UA",
                             "country_code": "UKR",
                             "country": "Ukraine",
-                            "country_short_code": "UA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="348"),
                         {
+                            "country_short_code": "HU",
                             "country_code": "HUN",
                             "country": "Ungarn",
-                            "country_short_code": "HU",
                         },
                     ),
                     (
                         ExactValueMatcher(value="858"),
                         {
+                            "country_short_code": "UY",
                             "country_code": "URY",
                             "country": "Uruguay",
-                            "country_short_code": "UY",
                         },
                     ),
                     (
                         ExactValueMatcher(value="850"),
                         {
+                            "country_short_code": "VI",
                             "country_code": "VIR",
                             "country": "US Virgin Islands",
-                            "country_short_code": "VI",
                         },
                     ),
                     (
                         ExactValueMatcher(value="840"),
                         {
+                            "country_short_code": "US",
                             "country_code": "USA",
                             "country": "USA",
-                            "country_short_code": "US",
                         },
                     ),
                     (
                         ExactValueMatcher(value="860"),
                         {
+                            "country_short_code": "UZ",
                             "country_code": "UZB",
                             "country": "Usbekistan",
-                            "country_short_code": "UZ",
                         },
                     ),
                     (
                         ExactValueMatcher(value="548"),
                         {
+                            "country_short_code": "VU",
                             "country_code": "VUT",
                             "country": "Vanuatu",
-                            "country_short_code": "VU",
                         },
                     ),
                     (
                         ExactValueMatcher(value="336"),
                         {
+                            "country_short_code": "VA",
                             "country_code": "VAT",
                             "country": "Vatikan",
-                            "country_short_code": "VA",
                         },
                     ),
                     (
                         ExactValueMatcher(value="862"),
                         {
+                            "country_short_code": "VE",
                             "country_code": "VEN",
                             "country": "Venezuela",
-                            "country_short_code": "VE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="784"),
                         {
+                            "country_short_code": "AE",
                             "country_code": "ARE",
                             "country": "Vereinigte Arabische Emirate",
-                            "country_short_code": "AE",
                         },
                     ),
                     (
                         ExactValueMatcher(value="704"),
                         {
+                            "country_short_code": "VN",
                             "country_code": "VNM",
                             "country": "Vietnam",
-                            "country_short_code": "VN",
                         },
                     ),
                     (
                         ExactValueMatcher(value="876"),
                         {
+                            "country_short_code": "WF",
                             "country_code": "WLF",
                             "country": "Wallis & Futuna",
-                            "country_short_code": "WF",
                         },
                     ),
                     (
                         ExactValueMatcher(value="162"),
                         {
+                            "country_short_code": "CX",
                             "country_code": "CXR",
                             "country": "Weihnachtsinseln",
-                            "country_short_code": "CX",
                         },
                     ),
                     (
                         ExactValueMatcher(value="112"),
                         {
+                            "country_short_code": "BY",
                             "country_code": "BLR",
                             "country": "Weissrussland",
-                            "country_short_code": "BY",
                         },
                     ),
                     (
                         ExactValueMatcher(value="732"),
                         {
+                            "country_short_code": "EH",
                             "country_code": "ESH",
                             "country": "West Sahara",
-                            "country_short_code": "EH",
                         },
                     ),
                     (
                         ExactValueMatcher(value="140"),
                         {
+                            "country_short_code": "CF",
                             "country_code": "CAF",
                             "country": "Zentralafrika",
-                            "country_short_code": "CF",
                         },
                     ),
                     (
                         ExactValueMatcher(value="196"),
                         {
+                            "country_short_code": "CY",
                             "country_code": "CYP",
                             "country": "Zypern",
-                            "country_short_code": "CY",
                         },
                     ),
                 ],
